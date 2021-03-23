@@ -1,0 +1,93 @@
+*{
+    font-family: aria;
+    font-size: 20px;
+    color: black;
+}
+body{
+    background-image: url(../Picture/furley_bg.png);
+    background-size:  cover;
+}
+
+.icon_h{
+    width: 20px;
+    margin-left: 5px;
+}
+
+
+.header{
+    height: 60px;
+    width: 100%;
+    background-color: #F1A0A0;
+    position: relative;
+    top: 0px;
+    display: flex;
+}
+.header ul{
+    display: flex;
+}
+
+.home, .feed, .bell, .login, .register, .user{
+    background: none;
+    border: 0px;
+}
+.register{
+    position: absolute;
+    right: 10px;
+}
+.login{
+    position: absolute;
+    right: 50px;
+}
+.bell{
+    position: absolute;
+    right: 90px;
+}
+.user{
+    position: absolute;
+    right: 10px;
+}
+#user{
+    position: absolute;
+    right: 60px;
+}
+
+.home img{
+    width: 55px;
+    position: relative;
+    top: -19px;
+}
+.feed img{
+    width: 27px;
+    position: relative;
+    top: -4px;
+    left: -10px;
+}
+.bell img{
+    width: 27.4px;
+    position: relative;
+    top: -4px;
+}
+.register img{
+    margin-left: 10px;
+}
+.user img{
+    width: 35px;
+    position: relative;
+    top: -2px; 
+}
+
+.footer{
+    font-size: 15px;
+    position: absolute;
+    bottom: 2px;
+}
+
+@media (max-width:480px){
+    .tenweb{
+        font-size: 15px;
+    }
+    .icon_h{
+        width: 20px;
+        margin-left: 0px;
+    }
+}
