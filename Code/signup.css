@@ -98,3 +98,9 @@ h1{
     text-align: right;
     margin-top: 30px;
 }
+.icon_back{
+    position: absolute;
+    width: 35px;
+    top: -5px;
+    right: 300px;
+}

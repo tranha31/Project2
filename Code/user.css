@@ -1,0 +1,89 @@
+.userbox{
+  width: 500px;
+  height: 550px;
+  background: #fff;
+  color: #fff;
+  top: 380px;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+  padding: 70px 30px;
+}
+.avatar{
+  width: 200px;
+  height: 160px;
+  position: absolute;
+  top: 20px;
+  left: 2px;
+}
+.vertical_line {
+  border-left: 3px solid darkgrey;
+  color: FFF;
+  height: 550px;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  top: 0;
+}
+.button{
+    border: none;
+    padding: 16px 32px;
+    display: inline-block;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 2px;
+    background: #FFE0E0;
+    color: #000;
+    height: 50px;
+    width: 250px;
+    margin-top: 30px;
+    margin-left: 197px;
+    text-align: center;
+}
+.button:hover
+{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+.icon_back{
+    position: absolute;
+    width: 35px;
+    top: 15px;
+    right: 1430px;
+}
+.icon_save{
+    position: absolute;
+    width: 35px;
+    top: 500px;
+    right: 20px;
+}
+.button_logout{
+    border: none;
+    padding: 16px 32px;
+    display: inline-block;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 2px;
+    background: #FFE0E0;
+    color: #000;
+    height: 50px;
+    width: 130px;
+    margin-top: 30px;
+    margin-left: 5px;
+    text-align: center;
+}
+.button_logout:hover
+{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+.box_left h1{
+    position: absolute;
+    top:180px;
+    left:80px;
+}
