@@ -1,0 +1,290 @@
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}  
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    width: 2px;
+    border: 1px dotted #f8bbba;
+}
+::-webkit-scrollbar-thumb {
+    background: #FFD7D8; 
+    border-radius: 10px;
+} 
+::-webkit-scrollbar-thumb:hover {
+    background: #f5a4a3;  
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    height: 90vh;
+}
+.main div{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.image{
+    width: 50%;
+    height: 1200px;
+    margin-top: 50px;
+}
+
+.image div{
+    height: 500px;
+    width: 95%;
+    background-color: darkgrey;
+    margin: 20px 50px
+    
+}
+.image .image_1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #2ECCFA;
+    
+}
+.image_1 img{
+    width: 100%;
+    height: 500px;
+}
+.image_2 img{
+    width: 100%;
+    height: 500px;
+}
+
+.image .image_2{
+    border: 1px solid #2ECCFA;
+}
+.button{
+    width: 10%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 85px;
+}
+.select_b, .download_b{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 300px;
+    margin-top: 100px;
+}
+
+.feature{
+    width: 20%;
+    height: 700px;
+    text-align: center;
+    margin-top: 66px;
+}
+.button button{
+    margin: 10px;
+    width: 150px;
+    background-color: #ffe0e0;
+    border-radius: 5px;
+}
+.feature_img{
+    background-color: white;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    
+    overflow: auto;
+    border: 1px solid #2ECCFA;
+}
+
+.feature_img a img{
+    width: 85%;
+    margin-top: 15px;
+}
+.feature_t{
+    background-color: #ffe0e0;
+    border: 1px solid #2ECCFA;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+@media (max-width: 480px){
+    .main div{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .image{
+        width: 70%;
+        height: 600px;
+        margin-top: 150px;
+    }
+    .image div{
+        height: 200px;
+    }
+    .image_1 img{
+        width: 100%;
+        height: 200px;
+    }
+    .image_2 img{
+        width: 100%;
+        height: 200px;
+    }
+    .image .image_1 input{
+        font-size: 6px;
+    }
+    .button button{
+        margin: 2px;
+        width: 50px;
+        font-size: 10px;
+        border-radius: 5px;
+    }
+    
+    .feature_t h3{
+        font-size: 8px;
+    }
+    .feature{
+        height: 50px;
+        position: absolute;
+        top: 2px;
+        width: 90%; 
+    }
+    .feature_img{
+        height: 240px;
+    }
+    .feature_img a img{
+        
+        margin-top: 5px;
+    }
+    .feature_img{
+        background-color: white;
+        height: 50px;
+        flex-direction: row;
+    
+    }
+    .button{
+        height: 200px;
+        margin-top: 120px;
+    }
+    .select_b, .download_b{
+        margin-bottom: 100px;
+        margin-top: 50px;
+    }
+    .annouce{
+        height: 200px;
+    }
+    .an{
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 520px){
+    .main div{
+        margin-left: 7px;
+        margin-right: 7px;
+    }
+    .image{
+        width: 70%;
+        height: 800px;
+        margin-top: 50px;
+    }
+    .image div{
+        height: 300px;
+    }
+    .image_1 img{
+        height: 300px;
+        width: 100%;
+    }
+    .image_2 img{
+        height: 300px;
+        width: 100%;
+    }
+    .feature{
+        width: 25%;
+        height: 500px;
+        
+    }
+    .feature_img{
+        height: 350px;
+    }
+    .feature_img a img{
+        
+        margin-top: 2px;
+    }
+    .feature_t{
+        height: 35px;
+    }
+    .feature_t h3{
+        font-size: 10px;
+    }
+    .button{
+        width: 16%;
+        height: 200px;
+        margin-top: 120px;
+    }
+    .button button{
+        margin: 2px;
+        width: 70px;
+        font-size: 10px;
+        border-radius: 5px;
+    }
+    .select_b, .download_b{
+        margin-bottom: 200px;
+        margin-top: 50px;
+    }
+    .image .image_1 input{
+        font-size: 15px;
+    }
+    .an{
+        font-size: 15px;
+    }
+    
+}
+
+@media (min-width: 1020px){
+    .main div{
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+    .image{
+        width: 50%;
+        height: 1200px;
+        margin-top: 50px;
+    }
+    .image div{
+        height: 600px;
+    }
+    .image_1 img{
+        height: 600px;
+    }
+    .image_2 img{
+        height: 600px;
+    }
+    .feature{
+        width: 25%;
+        height: 600px;
+        
+    }
+    .feature_img{
+        height: 700px;
+    }
+    .feature_img a img{
+        
+        margin-top: 2px;
+    }
+    .feature_t{
+        height: 45px;
+    }
+    .feature_t h3{
+        font-size: 20px;
+    }
+    .button button{
+        margin: 10px;
+        height: 50px;
+        width: 150px;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+    .select_b, .download_b{
+        margin-bottom: 350px;
+        margin-top: 50px;
+    }
+}
