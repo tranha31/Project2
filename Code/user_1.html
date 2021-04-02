@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type ="text/css" href="header_footer.css">
         <link rel="stylesheet" type="text/css" href="main.css">
-
+        <link rel="stylesheet" type="text/css" href="user.css">
     </head>
 
     <body>
@@ -67,71 +67,35 @@
 
         </div>
 
-        <div class="main">
-            <div class="image">
-                <div class="image_1" id="image_1">
-                    <input type="file" name="input_p" id="file" onchange="return fileValidation()">
-                </div>
-                <div class="image_2">
+        <main>
+          <div class="userbox_1">
+              <div class="vertical_line_1"></div>
+              <div class="box_right">
 
-                </div>
-            </div>
-
-            <div class="button">
-                <div class="select_b">
-                    <button class="button_1" id="start" onclick="">Start</button>
-                    <select style="text-align: center">
-                        <option value="Medium" class="button_1">Medium</option>
-                        <option value="High" class="button_2">High</option>
-                    </select>
-                </div>
-                <div class="download_b">
-                    <button class="button_1" id="download" onclick="">Download</button>
-                    <button class="button_1" id="share">Share</button>
-                </div>
-            </div>
-
-            <div class="feature">
-                <div class="feature_t">
-                    <h3>Feature Photos</h3>
-                </div>
-                <div class="feature_img">
-                    <a href="" class="feature_image" id="f_1"><img src="../Picture/%E1%BA%A3nh3.jpg"></a>
-                    <a href="" class="feature_image" id="f_2"><img src="../Picture/%E1%BA%A3nh3.jpg"></a>
-                    <a href="" class="feature_image" id="f_3"><img src="../Picture/%E1%BA%A3nh3.jpg"></a>
-                    <a href="" class="feature_image" id="f_4"><img src="../Picture/%E1%BA%A3nh3.jpg"></a>
-                    <a href="" class="feature_image" id="f_5"><img src="../Picture/%E1%BA%A3nh3.jpg"></a>
-                </div>
-
-            </div>
-        </div>
+              </div>
+              <div class="box_left">
+                  <h1 class="avatar_name_1">Taha</h1>
+                  <img src="../Picture/avatar_user.png" class="avatar_1"
+              </div>
+              <div class="box_right">
+                  <div class="number_pictures">2</div>
+                  <a class="view_pictures" href="">Pictures</a>
+                  <div class="number_followed">10</div>
+                  <a class="view_followed" href="">Followed</a>
+              </div>
+              <div class="box_bottom">
+                  <img src="../Picture/background_pic.png" class="background_pic">
+              </div>
+              <a class="edit" href="">
+                  <img src="../Picture/edit.png" class="icon_edit">
+              </a>
+           </div>
+        </main>
 
         <div class="footer">
             <a href="#" id="aboutus" style="color: gray">About us</a>
         </div>
 
-        <script>
-            function fileValidation(){
-                var fileInput = document.getElementById("file");
-                var filePath = fileInput.value;
-                var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-                if(!allowedExtensions.exec(filePath)){
-                    alert("Vui lòng upload các file có định dạng: .jpeg/.jpg/.png/.gif only.");
-                    fileInput.value = "";
-                    return false;
-                }
-                else{
-                    if(fileInput.files && fileInput.files[0]){
-                        var reader = new FileReader();
-                        reader.onload = function(e){
-                            document.getElementById("image_1").innerHTML = '<img  src="'+e.target.result+'"/>';
-                        };
-                        reader.readAsDataURL(fileInput.files[0]);
-                    }
-                }
-            }
-
-        </script>
         <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
