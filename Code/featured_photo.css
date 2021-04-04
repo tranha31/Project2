@@ -40,7 +40,7 @@
 }
 
 
-#picture_1{
+.picture_1{
     width: 100%;
     height: 42vw;
     background-color: azure;
@@ -51,32 +51,32 @@
     background-color: #c4c4c4;
     border: 2.5px solid pink;
 }
-#cap_1{
+.cap_1{
     width: 90%; 
     margin-right: 10px;
 }
-#cap_3{
+.cap_3{
     width: 90%;
 }
-#cap_4{
+.cap_4{
     margin-top: 20px;
 }
 .ava{
     width: 50px;
 }
-#vote_1{
+.vote_1{
     width: 50px;
 }
-#count_vote{
+.count_vote{
     margin-left: 15px;
 }
-#cmt, #ava_user{
+.cmt, .ava_user{
     margin-right: 10px;
 }
 .cot1{
     width: 90%;
 }
-#my_cmt{
+.my_cmt{
     width: 100%;
     height: 110px;
     background-color: #c4c4c4;
@@ -84,22 +84,22 @@
     margin-top: 20px;
     border: 1px solid pink;
 }
-#my_profile{
+.my_profile{
     margin-top: 25px;
 }
 
-#my_cmt_1{
+.my_cmt_1{
     margin-top: 25px;
     width: 80%;
     height: 50px;
     border-radius: 5px;
 }
-#my_submit{
+.my_submit{
     height: 50px;
     margin-top: 27px;
     margin-left: 50px
 }
-#all_cmt{
+.all_cmt{
     border: 1px solid pink;
     width: 100%;
     height: 500px;
@@ -119,10 +119,10 @@
     margin-left: 20px;
 }
 
-#a_cmt li{
+.a_cmt li{
     margin-top: 45px;
 }
-#an_cmt{
+.an_cmt{
     width: 100%;
     background-color: #c4c4c4;
     border: 1px solid pink;
@@ -148,30 +148,30 @@ p{
         margin-top: 30px;
         width: 85%;
     }
-    #cap_1{
+    .cap_1{
         margin-right: 0px;
     }
     
-    #count_vote{
+    .count_vote{
         margin-top: 0;
         margin-bottom: 0;
     }
-    #cap_4{
+    .cap_4{
         margin-top: 0;
     }
     ul{
         margin-left: -15px;
     }
-    #my_submit{
+    .my_submit{
         margin-left: 5px;
     }
-    #all_cmt{
+    .all_cmt{
         height: 310px;
     }
 }
 @media (min-width: 500px){
     .main_1{
-        width: 80%;
+        width: 65%;
         height: 85vh;
     }
     
