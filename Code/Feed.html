@@ -1,0 +1,292 @@
+<!doctype html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type ="text/css" href="header_footer.css">
+        <link rel="stylesheet" type="text/css" href="featured_photo.css">
+        <link rel="stylesheet" type="text/css" href="Feed.css">
+    </head>
+
+    <body>
+        <div class="header">
+            <div class="header_1">
+                <ul style="list-style-type: none">
+                    <li>
+                        <p style="display: inline;" class="tenweb">Ten trang web</p>
+                    </li>
+                    <li>
+                        <a class="home" href="#">
+                            <img src="../Picture/home.png" class="icon_h">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="feed" href="">
+                            <img src="../Picture/feed.png" class="icon_h">
+                        </a>
+                        
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="header_2" id="header_2">
+                <ul style="list-style-type: none" id="r_link">
+                    <li id="notification_li">
+                        <span id="notification_count">3</span>
+                        <a class="bell" href="" id="notificationLink">
+                            <img src="../Picture/bell.png" class="icon_h" id="icon_h">
+                        </a>
+                        <div id="notificationContainer">
+                            <div id="notificationTitle">Notifications</div>
+                            <div id="notificationsBody" class="notifications"></div>
+                            <div id="notificationFooter"><a href="#">See All</a></div>
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <a class="login" href="">
+                            <img src="../Picture/login.png" class="icon_h">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="register" href="">
+                            <img src="../Picture/register.png" class="icon_h">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="user" style="color: white;" class="icon_h">aaa</a>
+                    </li>
+                    <li>
+                        <a class="user" href="">
+                            <img src="../Picture/tk.png" class="icon_h">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div class="main">
+            
+            <div class="search" style="display: flex;">
+                <input type="text" name="Search" id="search_1">
+                <a href="#" id="search_2"><img src="../Picture/find.png"></a>
+            </div>
+            
+            <div class="up_nf" style="display: flex">
+                <a class="my_profile" id="profile_1"><img id="profile_2" src="../Picture/ava1.png"></a>
+                <textarea rows="50" cols="50" style="resize: none"></textarea>
+                <input class="choose_pic" id="choose_p" type="file" onchange="return fileValidation()">
+                <div id="pic_1">
+                </div>
+                
+                <a id="remove" onclick="Remove_p()" href="#">Remove</a>
+                
+            </div>
+            
+            <div class="main_1">
+                <div id="picture" class="picture">
+                    <img id="picture_1" class="picture_1" src="../Picture/%E1%BA%A3nh3.jpg">
+                </div>
+                
+                <div class="content">
+                    <div class="caption_1">
+                        <ul style="list-style-type: none">
+                            <li style="display: flex;">
+                                <div id="cap_1" class="cap_1">
+                                    <p>Goodmorninggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg</p>
+                                </div>
+                            
+                                <div id="cap_2" class="cap_2">
+                                    <a id="user_1" class="user_1" href="#"><img class="ava ava_user" id="ava_user" src="../Picture/ava2.png"></a>
+                                </div>
+                            </li>
+                            
+                            <li style="display: flex">
+                                <div id="cap_3" class="cap_3" style="display: flex;">
+                                    <a id="vote" class="vote" href="#"><img id="vote_1" class="vote_1" src="../Picture/vote.png"></a>
+                                    <p id="count_vote" class="count_vote">200</p>
+                                </div>
+                            
+                                <div id="cap_4" class="cap_4">
+                                    <a id="cmt" class="cmt" href="#">Comments</a>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                    
+                    <div id="comment" class="comment">
+                        <div id="my_cmt" class="my_cmt">
+                            <a id="my_profile" class="my_profile" href="#" class="my_profile"><img class="ava" id="my_ava" src="../Picture/ava1.png"></a>
+                            
+                            <input id="my_cmt_1" class="my_cmt_1" type="text" name="comment">
+                            <button id="my_submit" class="my_submit" onclick="">Send</button>
+                        </div>
+                        
+                        <div id="all_cmt" class="all_cmt">
+                            <ul id="a_cmt" class="a_cmt" style="list-style-type: none">
+                                <li class="all_cmts">
+                                    <a id="proflie_user_1" class="proflie_user_1" href="#"><img class="ava" id="avartar_1" src="../Picture/ava3.png"></a>
+                                    
+                                    <div class="cmt_user">
+                                        <p>You are so beautiful</p>
+                                    </div>
+                                </li>
+                                
+                                <li class="all_cmts">
+                                    <a id="proflie_user_2" class="proflie_user_1" href="#"><img class="ava" id="avartar_2" src="../Picture/ava3.png"></a>
+                                    
+                                    <div class="cmt_user">
+                                        <p>You are so beautiful</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="an_cmt" class="an_cmt">
+                            <a id="an_cmt_1" class="an_cmt_1" href="#">Hide comments</a>
+                        </div>
+                    </div>
+                    
+                    
+                    <div id="picture" class="picture">
+                    <img id="picture_1" class="picture_1" src="../Picture/%E1%BA%A3nh3.jpg">
+                </div>
+                
+                <div class="content">
+                    <div class="caption_1">
+                        <ul style="list-style-type: none">
+                            <li style="display: flex;">
+                                <div id="cap_1" class="cap_1">
+                                    <p>Goodmorninggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg</p>
+                                </div>
+                            
+                                <div id="cap_2" class="cap_2">
+                                    <a id="user_1" class="user_1" href="#"><img class="ava ava_user" id="ava_user" src="../Picture/ava2.png"></a>
+                                </div>
+                            </li>
+                            
+                            <li style="display: flex">
+                                <div id="cap_3" class="cap_3" style="display: flex;">
+                                    <a id="vote" class="vote" href="#"><img id="vote_1" class="vote_1" src="../Picture/vote.png"></a>
+                                    <p id="count_vote" class="count_vote">200</p>
+                                </div>
+                            
+                                <div id="cap_4" class="cap_4">
+                                    <a id="cmt" class="cmt" href="#">Comments</a>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                    
+                    <div id="comment" class="comment">
+                        <div id="my_cmt" class="my_cmt">
+                            <a id="my_profile" class="my_profile" href="#" class="my_profile"><img class="ava" id="my_ava" src="../Picture/ava1.png"></a>
+                            
+                            <input id="my_cmt_1" class="my_cmt_1" type="text" name="comment">
+                            <button id="my_submit" class="my_submit" onclick="">Send</button>
+                        </div>
+                        
+                        <div id="all_cmt" class="all_cmt">
+                            <ul id="a_cmt" class="a_cmt" style="list-style-type: none">
+                                <li class="all_cmts">
+                                    <a id="proflie_user_1" class="proflie_user_1" href="#"><img class="ava" id="avartar_1" src="../Picture/ava3.png"></a>
+                                    
+                                    <div class="cmt_user">
+                                        <p>You are so beautiful</p>
+                                    </div>
+                                </li>
+                                
+                                <li class="all_cmts">
+                                    <a id="proflie_user_2" class="proflie_user_1" href="#"><img class="ava" id="avartar_2" src="../Picture/ava3.png"></a>
+                                    
+                                    <div class="cmt_user">
+                                        <p>You are so beautiful</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="an_cmt" class="an_cmt">
+                            <a id="an_cmt_1" class="an_cmt_1" href="#">Hide comments</a>
+                        </div>
+                    </div>    
+                </div>
+    
+            
+        </div>
+            
+            
+        
+        <div class="footer">
+            <a href="#" id="aboutus" style="color: gray">About us</a>
+        </div>
+        
+        <script>
+            function fileValidation(){
+                var fileInput = document.getElementById("choose_p");
+                var filePath = fileInput.value;
+                var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                if(!allowedExtensions.exec(filePath)){
+                    alert("Vui lòng upload các file có định dạng: .jpeg/.jpg/.png/.gif only.");
+                    fileInput.value = "";
+                    return false;
+                }
+                else{
+                    if(fileInput.files && fileInput.files[0]){
+                        var reader = new FileReader();
+                        reader.onload = function(e){
+                            document.getElementById("pic_1").style.display = "flex";
+                            document.getElementById("pic_1").innerHTML = '<img  src="'+e.target.result+'"/>';
+                            document.getElementById("remove").style.display = "flex";
+                            document.getElementById("choose_p").style.display = "none";
+                        }; 
+                        reader.readAsDataURL(fileInput.files[0]);
+                    }
+                }
+            } 
+            
+        </script>
+                
+        <script>
+            function Remove_p(){
+                var obj1 = document.getElementById("choose_p");
+                var obj2 = document.getElementById("remove");
+                var obj3 = document.getElementById("pic_1");
+                
+                obj1.value = "";
+                
+                obj1.style.display = "flex";
+                obj2.style.display = "none";
+                obj3.style.display = "none";
+                
+                
+            }        
+        </script>
+                
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#notificationLink").click(function(){
+                    $("#notificationContainer").fadeToggle(300);
+                    $("#notification_count").fadeOut("slow");
+                    return false;
+                });
+ 
+                //Document Click hiding the popup 
+                $(document).click(function(){
+                    $("#notificationContainer").hide();
+                });
+ 
+                //Popup on click
+                $("#notificationContainer").click(function(){
+                    return false;
+                });
+ 
+            });
+        </script>
+        </div> 
+        </div>
+    </body>
+</html>
