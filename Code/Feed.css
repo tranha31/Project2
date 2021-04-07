@@ -28,7 +28,9 @@
     background-color: #c4c4c4;
     border: 1px solid pink;
 }
-
+.caption_1{
+    margin-bottom: 20px;
+}
 #profile_2{
     width: 80px;
 }

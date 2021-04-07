@@ -1,0 +1,81 @@
+.all_find{
+    width: 50%;
+    background-color: #c4c4c4;
+    height: 45vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    overflow: auto;
+    border: 1px solid pink;
+}
+
+.users{
+    display: flex;
+    background-color: #fef4f4;
+    width: 80%;
+    height: 100px;
+    border-radius: 10px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+.ava_user img{
+    width: 80px;
+    
+}
+
+.follow_user img{
+    width: 40px;
+    margin-right: 5px;
+}
+
+.link_ava{
+    margin-top: -40px;
+    margin-left: 15px;
+    width: 75%;
+}
+
+@media (max-width: 580px){
+    .all_find{
+        height: 70vh;
+        width: 80%;
+    }
+    .users{
+        height: 65px;
+    }
+    .ava_user img{
+        width: 50px;
+    }
+    .follow_user img{
+        width: 30px;
+    }
+    .link_ava{
+        margin-left: 5px;
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 700px){
+    .all_find{
+        width: 70%;
+        height: 75vh;
+    }
+    .search{
+        width: 70%;
+    }
+    #search_1{
+        width: 70%;
+    }
+}
+@media (min-width: 1025px){
+    .all_find{
+        width: 50%;
+    }
+    .search{
+        width: 50%;
+    }
+}
