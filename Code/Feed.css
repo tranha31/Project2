@@ -20,6 +20,7 @@
     border-radius: 5px;
     border: 1px solid pink;
 }
+
 .up_nf{
     align-items: center;
     margin-left: auto;
@@ -39,7 +40,9 @@ textarea{
     width: 80%;
     overflow: auto;
 }
-
+#submit{
+    display: none;
+}
 #choose_p{
     
     font-size: 15px;
