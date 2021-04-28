@@ -238,6 +238,12 @@ select{
         font-size: 10px;
         border-radius: 5px;
     }
+    select{
+        margin: 2px;
+        width: 70px;
+        font-size: 12px;
+        border-radius: 5px;
+    }
     .select_b, .download_b{
         margin-bottom: 200px;
         margin-top: 50px;
@@ -247,12 +253,6 @@ select{
     }
     .an{
         font-size: 15px;
-    }
-    select{
-        margin: 2px;
-        width: 70px;
-        font-size: 12px;
-        border-radius: 5px;
     }
     
 }
@@ -301,15 +301,15 @@ select{
         font-size: 20px;
         border-radius: 5px;
     }
-    .select_b, .download_b{
-        margin-bottom: 350px;
-        margin-top: 50px;
-    }
     select{
         margin: 10px;
         height: 50px;
         width: 150px;
         font-size: 20px;
         border-radius: 5px;
+    }
+    .select_b, .download_b{
+        margin-bottom: 350px;
+        margin-top: 50px;
     }
 }
