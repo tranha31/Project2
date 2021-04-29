@@ -106,6 +106,10 @@
                 <a href="#">Chưa có tài khoản?</a>
             </form>
         </div>
+         
+         <div class="main_image">
+             <img src="..\Picture\mangxahoi.png" class="image">
+         </div>
       </main>
         <div class="footer">
             <a href="#" id="aboutus" style="color: gray">About us</a>
