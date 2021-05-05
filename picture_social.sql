@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 25, 2021 lúc 06:02 PM
+-- Thời gian đã tạo: Th5 05, 2021 lúc 08:55 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -63,7 +63,8 @@ CREATE TABLE `comment` (
 INSERT INTO `comment` (`id`, `id_user`, `id_post`, `content`, `publish`) VALUES
 (1, 'hatq', 3, 'Goodnight', '2021-04-15 23:15:10'),
 (2, 'hatq', 4, 'Thank you', '2021-04-20 07:10:10'),
-(3, 'a', 1, 'Hello', '2021-03-20 15:00:00');
+(3, 'a', 1, 'Hello', '2021-03-20 15:00:00'),
+(5, 'a', 3, 'Hello', '2021-05-05 19:44:36');
 
 -- --------------------------------------------------------
 
@@ -144,7 +145,8 @@ INSERT INTO `picture` (`id`, `id_post`, `id_user`, `link`) VALUES
 (2, 2, 'hatq', '../UploadPicture/taha2.jpg'),
 (3, 3, 'a', '../UploadPicture/huta1.jpg'),
 (4, 4, 'a', '../UploadPicture/huta2.jpg'),
-(5, 5, 'a', '../UploadPicture/huta3.jpg');
+(5, 5, 'a', '../UploadPicture/huta3.jpg'),
+(10, 14, 'a', '../UploadPicture/socute.jpg');
 
 -- --------------------------------------------------------
 
@@ -169,7 +171,8 @@ INSERT INTO `post` (`id`, `id_user`, `caption`, `vote`, `publish_time`) VALUES
 (2, 'hatq', 'hi', 0, '2021-04-10 05:06:10'),
 (3, 'a', 'Goodnight', 3, '2021-04-15 23:10:20'),
 (4, 'a', 'Have a good day', 2, '2021-04-20 06:15:30'),
-(5, 'a', 'So beautiful', 1, '2021-03-30 15:40:10');
+(5, 'a', 'So beautiful', 1, '2021-03-30 15:40:10'),
+(14, 'a', 'a', 0, '2021-05-05 20:29:54');
 
 -- --------------------------------------------------------
 
@@ -211,8 +214,8 @@ ALTER TABLE `avatar`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `k_c_p` (`id_post`),
-  ADD KEY `k_c_u` (`id_user`);
+  ADD KEY `k_c_u` (`id_user`),
+  ADD KEY `k_c_p` (`id_post`);
 
 --
 -- Chỉ mục cho bảng `follow`
@@ -239,8 +242,8 @@ ALTER TABLE `nofitication`
 --
 ALTER TABLE `picture`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `k_p_pst` (`id_post`),
-  ADD KEY `k_p_u` (`id_user`);
+  ADD KEY `k_p_u` (`id_user`),
+  ADD KEY `k_p_pst` (`id_post`);
 
 --
 -- Chỉ mục cho bảng `post`
@@ -260,10 +263,46 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `avatar`
+--
+ALTER TABLE `avatar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT cho bảng `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `follow`
+--
+ALTER TABLE `follow`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT cho bảng `info`
 --
 ALTER TABLE `info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT cho bảng `nofitication`
+--
+ALTER TABLE `nofitication`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `picture`
+--
+ALTER TABLE `picture`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT cho bảng `post`
+--
+ALTER TABLE `post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

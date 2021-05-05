@@ -1,4 +1,6 @@
+<?php session_start(); ?>
 <!doctype html>
+
 <html>
     <head>
         <title></title>
@@ -8,6 +10,18 @@
         <link rel="stylesheet" type="text/css" href="featured_photo.css">
         <link rel="stylesheet" type="text/css" href="Feed.css">
         <link rel="stylesheet" type="text/css" href="FindUser.css">
+        
+        <?php 
+        if(!isset($_SESSION['username'])){
+            echo "<script>alert(\"You must login first\");</script>";
+            echo "<script>window.location.assign(\"Home.php\");</script>";
+        }
+        if(empty($_POST['Search'])){
+            
+            echo "<script>alert(\"You must enter the name you want to find\");</script>";
+            echo "<script>window.location.assign(\"Feed.php\");</script>";
+        }
+        ?>
     </head>
 
     <body>
@@ -70,42 +84,36 @@
         
         <div class="main">
             
-            <div class="search" style="display: flex;">
-                <input type="text" name="Search" id="search_1" value="HuTa">
-                <a href="#" id="search_2"><img src="../Picture/find.png"></a>
-            </div>
+            <form class="search" style="display: flex;" method="post" action="FindUser.php">
+                <input type="text" name="Search" id="search_1" value="<?php echo $_POST['Search']; ?>">
+                <button style="border:none; background:none;" type="submit" id="search_2"><img src="../Picture/find.png"></button>
+            </form>
             
             <div class = "all_find">
+                <?php 
+                    $conn = mysqli_connect("localhost", "root","", "picture_social");
+                    $sql = "select * from users where name like'%".$_POST['Search']."%' and username != '".$_SESSION['username']."'";
                 
-                        <div class="users">
-                            <a href="#" class="ava_user" id="user_1">
-                                <img src="../Picture/ava2.png">
-                            </a>
-                            <a href="#" class="link_ava" id="link_a_1">HuTa</a>
-                            <a href="#" class="follow_user" id="follow_1" onclick="">
-                                <img src="../Picture/plus-4-128.png">
-                            </a>
-                        </div>
-                    
-                        <div class="users">
-                            <a href="#" class="ava_user" id="user_1">
-                                <img src="../Picture/ava3.png">
-                            </a>
-                            <a href="#" class="link_ava" id="link_a_1">HuTa</a>
-                            <a href="#" class="follow_user" id="follow_1" onclick="">
-                                <img src="../Picture/plus-4-128.png">
-                            </a>
-                        </div>
-                    
-                        <div class="users">
-                            <a href="#" class="ava_user" id="user_1">
-                                <img src="../Picture/ava1.png">
-                            </a>
-                            <a href="#" class="link_ava" id="link_a_1">HuTa</a>
-                            <a href="#" class="follow_user" id="follow_1" onclick="">
-                                <img src="../Picture/plus-4-128.png">
-                            </a>
-                        </div>
+                    $result = mysqli_query($conn, $sql, null);
+                    if(mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                            $s = "select * from avatar where id_user = '".$row['username']."'";
+                            $result1 = mysqli_query($conn, $s, null);
+                            $ava = mysqli_fetch_assoc($result1);
+                            ?>
+                                <div class="users">
+                                    <a href="#" class="ava_user" id="user_1">
+                                        <?php echo "<img id = \"profile_2\" src = ".$ava["link"].">"; ?>
+                                    </a>
+                                    <a href="#" class="link_ava" id="link_a_1"><?php echo $row['name']; ?></a>
+                                
+                                </div>  
+                            <?php
+                        }
+                    }
+                ?>
+                
+                        
                   
             </div>
             
@@ -140,7 +148,6 @@
  
             });
         </script>
-        </div> 
-        </div>
+        
     </body>
 </html>

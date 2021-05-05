@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html>
     <head>
@@ -31,7 +32,8 @@
                         echo "<script>alert(\"Username or Password is not correct, please try again\");</script>";
                     }
                     else{
-                        echo "<script>window.location.href=\"Home.php?username=".$u."\";</script>";
+                        $_SESSION['username'] = $u;
+                        echo "<script>window.location.href=\"Home.php\";</script>";
                         
                     }
                 }
