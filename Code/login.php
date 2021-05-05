@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html>
     <head>
@@ -31,7 +32,8 @@
                         echo "<script>alert(\"Username or Password is not correct, please try again\");</script>";
                     }
                     else{
-                        echo "<script>window.location.href=\"Home.php?username=".$u."\";</script>";
+                        $_SESSION['username'] = $u;
+                        echo "<script>window.location.href=\"Home.php\";</script>";
                         
                     }
                 }
@@ -106,10 +108,6 @@
                 <a href="#">Chưa có tài khoản?</a>
             </form>
         </div>
-         
-         <div class="main_image">
-             <img src="..\Picture\mangxahoi.png" class="image">
-         </div>
       </main>
         <div class="footer">
             <a href="#" id="aboutus" style="color: gray">About us</a>

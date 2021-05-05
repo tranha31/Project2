@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="feed" href="">
+                        <a class="feed" href="Feed.php">
                             <img src="../Picture/feed.png" class="icon_h">
                         </a>
                         
