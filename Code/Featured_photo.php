@@ -1,4 +1,7 @@
 <!doctype html>
+<?php 
+session_start();    
+?>
 <html>
     <head>
         <title></title>
@@ -45,12 +48,12 @@
                         <p style="display: inline;" class="tenweb">Ten trang web</p>
                     </li>
                     <li>
-                        <a class="home" href="#">
+                        <a class="home" href="Home.php">
                             <img src="../Picture/home.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a class="feed" href="">
+                        <a class="feed" href="Feed.css">
                             <img src="../Picture/feed.png" class="icon_h">
                         </a>
                         
@@ -73,20 +76,20 @@
                         
                     </li>
                     <li>
-                        <a class="login" href="">
+                        <a class="login" href="login.php">
                             <img src="../Picture/login.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a class="register" href="">
+                        <a class="register" href="signup.php">
                             <img src="../Picture/register.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a href="#" id="user" style="color: white;" class="icon_h">aaa</a>
+                        <a href="user.php" id="user" style="color: white;" class="icon_h">aaa</a>
                     </li>
                     <li>
-                        <a class="user" href="">
+                        <a class="user" href="user.php">
                             <img src="../Picture/tk.png" class="icon_h">
                         </a>
                     </li>
@@ -96,7 +99,7 @@
         </div>
         
         <div class="main">
-            <a id="back" href="Home.php"><img id="back_1" src="../Picture/back.png"></a>
+            
             
             <div class="main_1">
                 <div id="picture" class="picture">
@@ -128,6 +131,7 @@
                             
                             <li style="display: flex">
                                 <div id="cap_3" class="cap_3" style="display: flex;">
+                                    
                                     <a id="vote" class="vote" href="#"><img id="vote_1" class="vote_1" src="../Picture/vote.png"></a>
                                     
                                     <?php 
@@ -142,16 +146,31 @@
                     </div>
                     
                     <div id="comment" class="comment">
-                        <div id="my_cmt" class="my_cmt">
-                            <a id="my_profile" class="my_profile" href="#" class="my_profile"><img class="ava" id="my_ava" src="../Picture/ava1.png"></a>
+                        <?php 
+                        if(isset($_SESSION['username'])){
+                            $conn = mysqli_connect("localhost", "root","", "picture_social");
+                            $sql = "select * from avatar where id_user ='".$_SESSION['username']."'";
                             
-                            <form method="post" action="" style="display:flex; width:100%;">
-                                <input id="my_cmt_1" class="my_cmt_1" type="text" name="comment">
+                            $result = mysqli_query($conn, $sql, null);
+                            $u1 = mysqli_fetch_assoc($result);
                             
-                                <button id="my_submit" class="my_submit" onclick="">Send</button>
-                            </form>
+                            ?>
+                            <div id="my_cmt" class="my_cmt">
+                                <a href="#" class="my_profile">
+                                    <?php echo "<img class = \"ava\" src =\"".$u1["link"]."\">"; ?>
+                                </a>
                             
-                        </div>
+                                <form method="post" action="ValidCmt.php?id=<?php echo $id_post; ?>" style="display:flex; width:100%;">
+                                    <input id="my_cmt_1" class="my_cmt_1" type="text" name="comment">
+                            
+                                    <button id="my_submit" class="my_submit"   onclick="">Send</button>
+                                </form>
+                            
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        
                         
                         <div id="all_cmt" class="all_cmt">
                             <ul id="a_cmt" class="a_cmt" style="list-style-type: none">

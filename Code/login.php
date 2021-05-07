@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html>
     <head>
@@ -31,7 +32,8 @@
                         echo "<script>alert(\"Username or Password is not correct, please try again\");</script>";
                     }
                     else{
-                        echo "<script>window.location.href=\"Home.php?username=".$u."\";</script>";
+                        $_SESSION['username'] = $u;
+                        echo "<script>window.location.href=\"Home.php\";</script>";
                         
                     }
                 }
@@ -49,67 +51,71 @@
                         <p style="display: inline;" class="tenweb">Ten trang web</p>
                     </li>
                     <li>
-                        <button class="home" onclick="">
+                        <a class="home" href="Home.php">
                             <img src="../Picture/home.png" class="icon_h">
-                        </button>
+                        </a>
                     </li>
                     <li>
-                        <button class="feed" onclick="">
+                        <a class="feed" href="Feed.php">
                             <img src="../Picture/feed.png" class="icon_h">
-                        </button>
-
+                        </a>
+                        
                     </li>
                 </ul>
             </div>
-
-            <div class="header_2">
-                <ul style="list-style-type: none">
+            
+            <div class="header_2" id="header_2">
+                <ul style="list-style-type: none" id="r_link">
+                    <!--<li id="notification_li">
+                        <span id="notification_count">3</span>
+                        <a class="bell" href="" id="notificationLink">
+                            <img src="../Picture/bell.png" class="icon_h" id="icon_h">
+                        </a>
+                        <div id="notificationContainer">
+                            <div id="notificationTitle">Notifications</div>
+                            <div id="notificationsBody" class="notifications">
+                            </div>
+                            <div id="notificationFooter"><a href="#">See All</a></div>
+                        </div>
+                        
+                    </li>-->
                     <li>
-                        <button class="bell" onclick="">
-                            <img src="../Picture/bell.png" class="icon_h">
-                        </button>
-                    </li>
-                    <li>
-                        <button class="login" onclick="">
+                        <a class="login" href="login.php">
                             <img src="../Picture/login.png" class="icon_h">
-                        </button>
+                        </a>
                     </li>
                     <li>
-                        <button class="register" onclick="">
+                        <a class="register" href="signup.php">
                             <img src="../Picture/register.png" class="icon_h">
-                        </button>
+                        </a>
                     </li>
                     <li>
                         <a href="#" id="user" style="color: white;" class="icon_h">aaa</a>
                     </li>
                     <li>
-                        <button class="user" onclick="">
+                        <a class="user" href="">
                             <img src="../Picture/tk.png" class="icon_h">
-                        </button>
+                        </a>
                     </li>
                 </ul>
             </div>
-
+            
         </div>
      <main>
         <div class="loginbox">
           
           <img src="..\Picture\avatar.png" class="avatar">
-            <h1>Đăng nhập</h1>
+            <h1>Login</h1>
             <form method="post" action="login.php">
                 <p>Username</p>
                 <input type="text" name="username" placeholder=" Username">
                 <p>Password</p>
                 <input type="password" name="password" placeholder=" Password">
                 <input type="submit" name="login" value="Login">
-                <a href="#">Quên mật khẩu?</a><br>
-                <a href="#">Chưa có tài khoản?</a>
+                <a href="#">Forgot password?</a><br>
+                <a href="signup.php">Signup?</a>
             </form>
         </div>
-         
-         <div class="main_image">
-             <img src="..\Picture\mangxahoi.png" class="image">
-         </div>
       </main>
         <div class="footer">
             <a href="#" id="aboutus" style="color: gray">About us</a>
