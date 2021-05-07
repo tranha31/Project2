@@ -31,12 +31,12 @@ session_start();
                         <p style="display: inline;" class="tenweb">Ten trang web</p>
                     </li>
                     <li>
-                        <a class="home" href="#">
+                        <a class="home" href="Home.php">
                             <img src="../Picture/home.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a class="feed" href="">
+                        <a class="feed" href="Feed.php">
                             <img src="../Picture/feed.png" class="icon_h">
                         </a>
                         
@@ -59,20 +59,20 @@ session_start();
                         
                     </li>
                     <li>
-                        <a class="login" href="">
+                        <a class="login" href="login.php">
                             <img src="../Picture/login.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a class="register" href="">
+                        <a class="register" href="signup.php">
                             <img src="../Picture/register.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a href="#" id="user" style="color: white;" class="icon_h">aaa</a>
+                        <a href="user.php" id="user" style="color: white;" class="icon_h">aaa</a>
                     </li>
                     <li>
-                        <a class="user" href="">
+                        <a class="user" href="user.php">
                             <img src="../Picture/tk.png" class="icon_h">
                         </a>
                     </li>
@@ -199,7 +199,7 @@ session_start();
                                                         </div>
                                                             
                                                         <div id="cap_2" class="cap_2">
-                                                            <a id="user_1" class="user_1" href="<?php echo "user_1.php?username=".$u."&user=".$u1; ?>"><img class="ava ava_user" id="ava_user" src="<?php echo $row3['link']; ?>"></a>
+                                                            <a id="user_1" class="user_1" href="<?php echo "user_1.php?&user=".$u1; ?>"><img class="ava ava_user" id="ava_user" src="<?php echo $row3['link']; ?>"></a>
                                                         </div>
                                                     </li>
                             

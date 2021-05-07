@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html>
     <head>
@@ -9,12 +10,8 @@
         
         <?php
             if(isset($_POST['submit'])){
-                if($_POST['username'] == null){
-                    echo "<script>alert(\"Please enter your username\");</script>";
-                }
-                else{
-                    $u =  $_POST['username'];
-                }
+                $u =$_SESSION['username'];
+                
                 if($_POST['password'] == null){
                     echo "<script>alert(\"Please enter your password\");</script>";
                 }
@@ -63,30 +60,16 @@
                 
                 $gt = $_POST['gioithieu'];
                 
-                if($u && $p){
-                    $conn = mysqli_connect("localhost", "root","", "picture_social");
-                    $sql = "select * from users where username = '".$u."'";
-                    $result = mysqli_query($conn, $sql, null);
-                    if(mysqli_num_rows($result) > 0){
-                        echo "<script>alert(\"Username is used, please try again\");</script>"; 
-                    }
-                    else{
-                        $sql = "insert into users values ('".$u."','".$p."','".$n."',"."0, 0)";
-                        //echo $sql;
-                        $result = mysqli_query($conn, $sql, null);
-                        
-                        $sql = "insert into info(id_user, date_of_birth, sex, hobby, info_introduce) values('".$u."','".$dob."','".$sex."','".$st."','".$gt."')";
-                        //echo $sql;
-                        $result = mysqli_query($conn, $sql, null);
-                        
-                        echo "<script>window.location.href=\"login.php\";</script>";
-                        
-                    }
-                }
+                $conn = mysqli_connect("localhost", "root","", "picture_social");
                 
+                $sql = "update users set password = '$p', name = '$n' where username='$u'";
+                $result = mysqli_query($conn, $sql, null);
                 
+                $sql = "update info set date_of_birth = '$dob', sex = '$sex', hobby = '$st', info_introduce='$gt' where id_user='$u'";
+                $result = mysqli_query($conn, $sql, null);
+                
+                echo "<script>window.location.assign(\"user.php\")</script>";
             }
-        
         ?>
         
     </head>
@@ -114,7 +97,7 @@
             
             <div class="header_2" id="header_2">
                 <ul style="list-style-type: none" id="r_link">
-                    <!--<li id="notification_li">
+                    <li id="notification_li">
                         <span id="notification_count">3</span>
                         <a class="bell" href="" id="notificationLink">
                             <img src="../Picture/bell.png" class="icon_h" id="icon_h">
@@ -126,7 +109,7 @@
                             <div id="notificationFooter"><a href="#">See All</a></div>
                         </div>
                         
-                    </li>-->
+                    </li>
                     <li>
                         <a class="login" href="login.php">
                             <img src="../Picture/login.png" class="icon_h">
@@ -138,10 +121,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" id="user" style="color: white;" class="icon_h">aaa</a>
+                        <a href="user.php" id="user" style="color: white;" class="icon_h">aaa</a>
                     </li>
                     <li>
-                        <a class="user" href="">
+                        <a class="user" href="user.php">
                             <img src="../Picture/tk.png" class="icon_h">
                         </a>
                     </li>
@@ -155,10 +138,10 @@
            
                <div class="register-form">
                    <form action="signup.php" method="post">
-                       <h1>Register a new account</h1>
+                       <h1>Change information</h1>
                        <div class="input-box">
 
-                           <input type="text" name="username" placeholder="Username">
+                           <input type="text" name="username" placeholder="<?php echo $_SESSION['username']; ?>" readonly="readonly">
                        </div>
                        <div class="input-box">
 
@@ -203,7 +186,7 @@
                        </div>
 
                        <div class="btn-box">
-                           <input type="submit" name="submit" value="Register">
+                           <input type="submit" name="submit" value="Submit">
                        </div>
                    </form>
                </div>

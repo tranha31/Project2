@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 05, 2021 lúc 08:55 PM
+-- Thời gian đã tạo: Th5 07, 2021 lúc 11:41 AM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -107,7 +107,10 @@ CREATE TABLE `info` (
 --
 
 INSERT INTO `info` (`id`, `id_user`, `date_of_birth`, `sex`, `hobby`, `info_introduce`) VALUES
-(3, 'abc', '2021-04-08', 'Nam', 'Xem phim@Nghe nhạc@Đọc sách', 'zzz');
+(3, 'abc', '2021-04-08', 'Nam', 'Xem phim@Nghe nhạc@Đọc sách', 'zzz'),
+(4, 'a', '2021-02-23', 'Nữ', 'Xem phim@Nghe nhạc@Đọc sách', 'Love all'),
+(5, 'abc', '2021-02-23', 'Nữ', 'Xem phim@Nghe nhạc@Đọc sách', 'Love all'),
+(6, 'hatq', '2021-02-23', 'Nữ', 'Xem phim@Nghe nhạc@Đọc sách', 'Love all');
 
 -- --------------------------------------------------------
 
@@ -146,7 +149,8 @@ INSERT INTO `picture` (`id`, `id_post`, `id_user`, `link`) VALUES
 (3, 3, 'a', '../UploadPicture/huta1.jpg'),
 (4, 4, 'a', '../UploadPicture/huta2.jpg'),
 (5, 5, 'a', '../UploadPicture/huta3.jpg'),
-(10, 14, 'a', '../UploadPicture/socute.jpg');
+(10, 14, 'a', '../UploadPicture/socute.jpg'),
+(11, 15, 'a', '../UploadPicture/');
 
 -- --------------------------------------------------------
 
@@ -172,7 +176,8 @@ INSERT INTO `post` (`id`, `id_user`, `caption`, `vote`, `publish_time`) VALUES
 (3, 'a', 'Goodnight', 3, '2021-04-15 23:10:20'),
 (4, 'a', 'Have a good day', 2, '2021-04-20 06:15:30'),
 (5, 'a', 'So beautiful', 1, '2021-03-30 15:40:10'),
-(14, 'a', 'a', 0, '2021-05-05 20:29:54');
+(14, 'a', 'a', 0, '2021-05-05 20:29:54'),
+(15, 'a', '', 0, '2021-05-07 11:39:54');
 
 -- --------------------------------------------------------
 
@@ -272,19 +277,19 @@ ALTER TABLE `avatar`
 -- AUTO_INCREMENT cho bảng `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `info`
 --
 ALTER TABLE `info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `nofitication`
@@ -296,13 +301,13 @@ ALTER TABLE `nofitication`
 -- AUTO_INCREMENT cho bảng `picture`
 --
 ALTER TABLE `picture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

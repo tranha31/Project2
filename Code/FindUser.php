@@ -32,12 +32,12 @@
                         <p style="display: inline;" class="tenweb">Ten trang web</p>
                     </li>
                     <li>
-                        <a class="home" href="#">
+                        <a class="home" href="Home.php">
                             <img src="../Picture/home.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a class="feed" href="">
+                        <a class="feed" href="Feed.css">
                             <img src="../Picture/feed.png" class="icon_h">
                         </a>
                         
@@ -60,20 +60,20 @@
                         
                     </li>
                     <li>
-                        <a class="login" href="">
+                        <a class="login" href="login.php">
                             <img src="../Picture/login.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a class="register" href="">
+                        <a class="register" href="signup.php">
                             <img src="../Picture/register.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a href="#" id="user" style="color: white;" class="icon_h">aaa</a>
+                        <a href="user.php" id="user" style="color: white;" class="icon_h">aaa</a>
                     </li>
                     <li>
-                        <a class="user" href="">
+                        <a class="user" href="user.php">
                             <img src="../Picture/tk.png" class="icon_h">
                         </a>
                     </li>
@@ -91,26 +91,31 @@
             
             <div class = "all_find">
                 <?php 
-                    $conn = mysqli_connect("localhost", "root","", "picture_social");
-                    $sql = "select * from users where name like'%".$_POST['Search']."%' and username != '".$_SESSION['username']."'";
-                
-                    $result = mysqli_query($conn, $sql, null);
-                    if(mysqli_num_rows($result) > 0){
-                        while($row = mysqli_fetch_assoc($result)){
-                            $s = "select * from avatar where id_user = '".$row['username']."'";
-                            $result1 = mysqli_query($conn, $s, null);
-                            $ava = mysqli_fetch_assoc($result1);
-                            ?>
-                                <div class="users">
-                                    <a href="#" class="ava_user" id="user_1">
-                                        <?php echo "<img id = \"profile_2\" src = ".$ava["link"].">"; ?>
-                                    </a>
-                                    <a href="#" class="link_ava" id="link_a_1"><?php echo $row['name']; ?></a>
+                    $name = $_POST['Search'];
+                    $find = explode(' ', $name);
+                    foreach($find as $key => $value){
+                        $conn = mysqli_connect("localhost", "root","", "picture_social");
+                        $sql = "select * from users where name like'%".$value."%' and username != '".$_SESSION['username']."'";
+                        
+                        $result = mysqli_query($conn, $sql, null);
+                        if(mysqli_num_rows($result) > 0){
+                            while($row = mysqli_fetch_assoc($result)){
+                                $s = "select * from avatar where id_user = '".$row['username']."'";
+                                $result1 = mysqli_query($conn, $s, null);
+                                $ava = mysqli_fetch_assoc($result1);
+                                ?>
+                                    <div class="users">
+                                        <a href="#" class="ava_user" id="user_1">
+                                            <?php echo "<img id = \"profile_2\" src = ".$ava["link"].">"; ?>
+                                        </a>
+                                        <a href="#" class="link_ava" id="link_a_1"><?php echo $row['name']; ?></a>
                                 
-                                </div>  
-                            <?php
+                                    </div>  
+                                <?php
+                            }
                         }
                     }
+                    
                 ?>
                 
                         
