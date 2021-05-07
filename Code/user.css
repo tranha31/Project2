@@ -78,6 +78,8 @@
     cursor: pointer;
     background: #ffc107;
     color: #000;
+    
+    
 }
 .icon_back{
     position: absolute;
@@ -161,4 +163,16 @@
     position: absolute;
     top:220px;
     left:230px;
+}
+.all_p{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.picture{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }

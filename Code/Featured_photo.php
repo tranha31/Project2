@@ -48,12 +48,12 @@ session_start();
                         <p style="display: inline;" class="tenweb">Ten trang web</p>
                     </li>
                     <li>
-                        <a class="home" href="#">
+                        <a class="home" href="Home.php">
                             <img src="../Picture/home.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a class="feed" href="">
+                        <a class="feed" href="Feed.css">
                             <img src="../Picture/feed.png" class="icon_h">
                         </a>
                         
@@ -76,20 +76,20 @@ session_start();
                         
                     </li>
                     <li>
-                        <a class="login" href="">
+                        <a class="login" href="login.php">
                             <img src="../Picture/login.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a class="register" href="">
+                        <a class="register" href="signup.php">
                             <img src="../Picture/register.png" class="icon_h">
                         </a>
                     </li>
                     <li>
-                        <a href="#" id="user" style="color: white;" class="icon_h">aaa</a>
+                        <a href="user.php" id="user" style="color: white;" class="icon_h">aaa</a>
                     </li>
                     <li>
-                        <a class="user" href="">
+                        <a class="user" href="user.php">
                             <img src="../Picture/tk.png" class="icon_h">
                         </a>
                     </li>
@@ -99,7 +99,7 @@ session_start();
         </div>
         
         <div class="main">
-            <a id="back" href="Home.php"><img id="back_1" src="../Picture/back.png"></a>
+            
             
             <div class="main_1">
                 <div id="picture" class="picture">
