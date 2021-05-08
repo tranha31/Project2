@@ -115,9 +115,16 @@
             ?>
           <div class="userbox">
               <div class="vertical_line"></div>
+              <div class="box_left">
+                  <div class="avatar-box">
+                    <img src="<?php echo $row1['link']; ?>" class="avatar">
+                    <h1 class="avatar_name"><?php echo $row['name']; ?></h1>
+                  </div>
+                  <button class="button_logout" onclick="Logout()">Log out</button>
+              </div>
               <div class="box_right">
-                  <button class="button" onclick="">Change Information</button>
-                  <p>Date of birth: <?php echo $row2['date_of_birth']; ?></p>
+                <div class="infor">
+                      <p>Date of birth: <?php echo $row2['date_of_birth']; ?></p>
                   <h4>Hobbies:</h4>
                   <?php
                   if($hobby != ""){
@@ -133,17 +140,13 @@
                       echo "<p>$info</p>";
                   }
                   ?>
+                  </div>
+                <button class="button" onclick="">Change Information</button>
               </div>
-              <div class="box_left">
-                  <h1 class="avatar_name"><?php echo $row['name']; ?></h1>
-                  <img src="<?php echo $row1['link']; ?>" class="avatar">
-              </div>
-              <button class="button_logout" onclick="Logout()">Log out</button>
-              
            </div>
             
             <hr>
-         <!--   <div class="all_p" >
+         <div class="all_p" >
             
             
             <?php 
@@ -202,7 +205,7 @@
                     
             
             ?>
-            </div>-->
+            </div>
         </main>
 
         
