@@ -84,8 +84,11 @@ session_start();
         <div class="main">
             
             <form class="search" style="display: flex;" method="post" action="FindUser.php">
-                <input type="text" name="Search" id="search_1">
-                <button style="border:none; background:none;" type="submit" id="search_2"><img src="../Picture/find.png"></button>
+                <div>
+                    <input type="text" name="Search" id="search_1">
+                    <button style="border:none; background:none;" type="submit" id="search_2"><img src="../Picture/find.png"></button>
+                </div>
+                
                 
             </form>
             <?php 
@@ -95,9 +98,9 @@ session_start();
                 $result = mysqli_query($conn, $sql, null);
                 $u1 = mysqli_fetch_assoc($result);
             ?>
-            <form method="post" action="ValidPost.php" enctype="multipart/form-data">
+            <form class="post" method="post" action="ValidPost.php" enctype="multipart/form-data">
                     <div class="up_nf" style="display: flex">
-                    <a class="my_profile" href="#">
+                    <a class="my_profile" href="user.php">
                         <?php echo "<img id = \"profile_2\" src = ".$u1["link"].">"; ?>
                     </a>
                     <textarea name="caption" rows="50" cols="50" style="resize: none"></textarea>
@@ -111,7 +114,6 @@ session_start();
             </form>
             
             
-            <div class="main_1">
                 <?php 
                     $sql = "select * from post where id_user = '$u' and publish_time >= (CURRENT_DATE()-30) order by publish_time desc";
                     $result = mysqli_query($conn, $sql, null);
@@ -231,7 +233,7 @@ session_start();
                 
     
             
-            </div>
+            
         </div>
             
         

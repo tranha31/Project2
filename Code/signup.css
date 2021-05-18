@@ -1,8 +1,15 @@
-*{
+
+input, textarea{
     padding: 0px;
     margin: 0px;
     font-family: sans-serif;
     box-sizing: border-box;
+}
+main{
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
 }
 .container{
     width: 100%;
@@ -103,4 +110,29 @@ h1{
     width: 35px;
     top: -5px;
     right: 1420px;
+}
+@media (max-width:480px){
+    .register-form{
+        width: 80%;
+        height: 70vh;
+        
+    }
+    .container{
+        margin-top: -5vh;
+    }
+    h1{
+        margin-bottom: 15px;
+        margin-top: 0;
+    }
+    input, textarea, label{
+        font-size: 15px;
+    }
+    .btn-box{
+        margin-top: 0;
+    }
+}
+@media (min-width:580px){
+    .register-form{
+        width: 80%;
+    }
 }

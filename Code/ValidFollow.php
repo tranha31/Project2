@@ -17,6 +17,6 @@ else{
     mysqli_query($conn, $sql, null);
 }
 
-echo "<script>window.location.assign(\"user_1.php?user=.".$ur."\")</script>";
+echo "<script>window.location.assign(\"user_1.php?user=".$ur."\")</script>";
 
 ?>

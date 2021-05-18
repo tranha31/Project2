@@ -101,7 +101,8 @@
             </div>
             
         </div>
-     <main>
+     <div id="main">
+         
         <div class="loginbox">
           
           <img src="..\Picture\avatar.png" class="avatar">
@@ -116,7 +117,7 @@
                 <a href="signup.php">Signup?</a>
             </form>
         </div>
-      </main>
+      </div>
         <div class="footer">
             <a href="#" id="aboutus" style="color: gray">About us</a>
         </div>

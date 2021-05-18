@@ -6,8 +6,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type ="text/css" href="header_footer.css">
-        <link rel="stylesheet" type="text/css" href="main.css">
-        <link rel="stylesheet" type="text/css" href="user_1.css">
+        <link rel="stylesheet" type="text/css" href="user.css">
+        <link rel="stylesheet" type="text/css" href="featured_photo.css">
+        <link rel="stylesheet" type="text/css" href="Feed.css">
     </head>
 
     <body>
@@ -105,9 +106,9 @@
                 $info = "";
             }
         ?>
-        <main>
+        <div class="main">
           <div class="userbox">
-              <div class="vertical_line"></div>
+              
               <div class="box_left">
                   <img src="<?php echo $row['link']; ?>" class="avatar">
                   <h1 class="avatar_name"><?php echo $row1['name']; ?></h1>
@@ -115,9 +116,10 @@
                   <img src="../Picture/plus-4-128.png" class="icon_save">
               </a>
               </div>
+              <div class="vertical_line"></div>
               <div class="box_right">
                   <div class="infor">
-                  <p>Date of birth: <?php echo $row3['date_of_birth']; ?></p>
+                  <h4>Date of birth: <?php echo $row3['date_of_birth']; ?></h4>
                   <h4>Hobbies:</h4>
                   <?php
                   if($hobby != ""){
@@ -133,12 +135,11 @@
                       echo "<p>$info</p>";
                   }
                   ?>
-                  </div
+                  </div>
               </div>
               
            </div>
             <hr>
-            <div class="all_p" >
             
             
             <?php 
@@ -154,8 +155,7 @@
                     $result1 = mysqli_query($conn, $sql, null);
                     $row3 = mysqli_fetch_assoc($result1);
                             
-                    ?>
-                    <div class="picture">       
+                    ?>      
                     <div id="picture" class="picture">
                         <img class="picture_1" src="<?php echo $row2['link']; ?>">
                     </div>
@@ -189,7 +189,7 @@
                         </div>
                     
                     </div>
-                </div>    
+                
                     <?php
                             
                     }
@@ -197,8 +197,8 @@
                     
             
             ?>
-            </div>
-        </main>
+    
+        </div>
 
         
 

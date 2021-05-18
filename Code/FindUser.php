@@ -105,10 +105,10 @@
                                 $ava = mysqli_fetch_assoc($result1);
                                 ?>
                                     <div class="users">
-                                        <a href="#" class="ava_user" id="user_1">
+                                        <a href="user_1.php?user=<?php echo $row['username']?>" class="ava_user" id="user_1">
                                             <?php echo "<img id = \"profile_2\" src = ".$ava["link"].">"; ?>
                                         </a>
-                                        <a href="#" class="link_ava" id="link_a_1"><?php echo $row['name']; ?></a>
+                                        <a href="user_1.php?user=<?php echo $row['username']?>" class="link_ava" id="link_a_1"><?php echo $row['name']; ?></a>
                                 
                                     </div>  
                                 <?php

@@ -26,30 +26,38 @@
 .main{
     overflow: auto;
     height: 90vh;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
 }
-
-.main_1{
-    width: 60%;
-    height: 900px;
-    background-color: none;
+.picture{
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
-    overflow: auto;
-    
+    width: 90vw;
+    display: flex;
+    margin-top: 25px;
 }
-
-
+.content{
+    margin-left: auto;
+    margin-right: auto;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+}
 .picture_1{
-    width: 100%;
+    width: 60%;
     height: 42vw;
     background-color: azure;
-    border: 2.5px solid pink;
+    border: 2.5px solid pink;  
+    margin-left: auto;
+    margin-right: auto;
 }
 .caption_1{
-    width: 100%;
+    width: 60%;
     background-color: #c4c4c4;
     border: 2.5px solid pink;
+    margin-left: auto;
+    margin-right: auto;
 }
 .cap_1{
     width: 90%; 
@@ -79,6 +87,10 @@
 #comment{
     display: flex;
     flex-direction: column;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
 .my_cmt{
     width: 100%;
@@ -153,9 +165,11 @@ p{
     .vote_1{
         width: 30px;
     }
-    .main_1{
-        margin-top: 30px;
-        width: 85%;
+    .picture_1{
+        width: 70%;
+    }
+    .caption_1{
+        width: 70%;
     }
     .cap_1{
         margin-right: 0px;

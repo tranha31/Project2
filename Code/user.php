@@ -6,7 +6,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type ="text/css" href="header_footer.css">
-        <link rel="stylesheet" type="text/css" href="main.css">
         <link rel="stylesheet" type="text/css" href="user.css">
         <link rel="stylesheet" type="text/css" href="featured_photo.css">
         <link rel="stylesheet" type="text/css" href="Feed.css">
@@ -80,7 +79,7 @@
 
         </div>
 
-        <main>
+        <div class="main">
             <?php 
                 $conn = mysqli_connect("localhost", "root","", "picture_social");
                 $u = $_SESSION['username'];
@@ -114,7 +113,6 @@
                 
             ?>
           <div class="userbox">
-              <div class="vertical_line"></div>
               <div class="box_left">
                   <div class="avatar-box">
                     <img src="<?php echo $row1['link']; ?>" class="avatar">
@@ -122,9 +120,10 @@
                   </div>
                   <button class="button_logout" onclick="Logout()">Log out</button>
               </div>
+              <div class="vertical_line"></div>
               <div class="box_right">
                 <div class="infor">
-                      <p>Date of birth: <?php echo $row2['date_of_birth']; ?></p>
+                      <h4>Date of birth: <?php echo $row2['date_of_birth']; ?></h4>
                   <h4>Hobbies:</h4>
                   <?php
                   if($hobby != ""){
@@ -141,12 +140,11 @@
                   }
                   ?>
                   </div>
-                <button class="button" onclick="">Change Information</button>
+                <button class="button" onclick="Change()">Change Information</button>
               </div>
            </div>
             
             <hr>
-         <div class="all_p" >
             
             
             <?php 
@@ -162,8 +160,7 @@
                     $result1 = mysqli_query($conn, $sql, null);
                     $row3 = mysqli_fetch_assoc($result1);
                             
-                    ?>
-                    <div class="picture">       
+                    ?>      
                     <div id="picture" class="picture">
                         <img class="picture_1" src="<?php echo $row2['link']; ?>">
                     </div>
@@ -197,7 +194,7 @@
                         </div>
                     
                     </div>
-                </div>    
+                  
                     <?php
                             
                     }
@@ -206,7 +203,7 @@
             
             ?>
             </div>
-        </main>
+    
 
         
         <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
@@ -232,6 +229,9 @@
             
             function Logout(){
                 window.location.assign("Home.php?a=0");
+            }
+            function Change(){
+                
             }
         </script>
     </body>

@@ -1,21 +1,28 @@
 .userbox{
-  width: 50%;
-  height: 83%;
-  background: #fff;
-  color: #fff;
-  top: 53%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%,-50%);
-  box-sizing: border-box;
-  z-index: -1;
-  display:flex;
+    width: 90%;
+    height: 83%;
+    background: #fff;
+    color: #fff;
+    box-sizing: border-box;
+    z-index: 2;
+    display:flex;
+    margin-left: auto;
+    margin-right: auto;
 }
 .userbox .box_left{
     text-align: center;
     overflow:hidden;
     width:41.5%;
     height:100%;
+    z-index: 1;
+}
+.save{
+    display: block;
+    position: relative;
+    z-index: 6;
+}
+.save img{
+    width: 50px;
 }
 .userbox .box_left .avatar_name{
     font-size:20px;
@@ -23,8 +30,7 @@
     font-family: Verdana, Geneva, sans-serif;
     text-align: center;
 }
-.userbox .box_left .avatar{
-    padding-top:20%; 
+.userbox .box_left .avatar{ 
     width:70%;
     height:70%;
 }
@@ -33,12 +39,22 @@
     padding-left: 7%;
     width:51%;
     height:100%;
+    display: flex;
+    flex-direction: column;
+    z-index: -5;
 }
 .userbox .box_right .infor{
-    padding-top: 15%; 
+    padding-top: 5%; 
+    margin-right: auto;
+    width: 80%;
+    text-align: left;
+    z-index: -3;
+}
+.infor p, .infor h4{
+    font-size: 25px;
 }
 .userbox .box_right button{
-    display: inline-block;
+    
     width:300px;
     height: 60px;
     transition-duration: 0.4s;
@@ -48,6 +64,12 @@
     background: #FFE0E0;
     color: #000;
     text-align: center;
+    font-size: 25px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    display: block;
+    position: relative;
+    z-index: 5;
 }
 .userbox .box_right .button:hover
 {
@@ -57,12 +79,8 @@
 }
 .vertical_line {
   border-left: 3px solid darkgrey;
-  color: FFF;
-  height: 100%;
-  position: absolute;
-  left: 50%;
-  margin-left: -8%;
-  top: 0;
+  color: black;
+  width: 2px;
 }
 .icon_back{
     position: absolute;
@@ -124,6 +142,9 @@
     margin-top: 30px;
     margin-left: 5px;
     text-align: center;
+    position: relative;
+    z-index: 5;
+    
 }
 .button_logout:hover
 {
@@ -131,15 +152,30 @@
     background: #ffc107;
     color: #000;
 }
-.all_p{
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.picture{
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+@media(max-width:480px){
+    .userbox{
+        height: 30%;
+    }
+    .infor p, .infor h4{
+        font-size: 10px;
+    }
+    .button_logout{
+        font-size: 10px;
+        
+    }
+    .userbox .box_right button{
+        width: 100px;
+        height: 20px;
+        font-size: 10px;
+    }
+    .userbox .box_left .avatar{ 
+        width:80px;
+        height:80px;
+    }
+    .userbox .box_left .avatar_name{
+        font-size: 15px;
+    }
+    .userbox .box_left .save .icon_save{
+        width: 15px;
+    }
 }

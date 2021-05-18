@@ -53,7 +53,7 @@ session_start();
                         </a>
                     </li>
                     <li>
-                        <a class="feed" href="Feed.css">
+                        <a class="feed" href="Feed.php">
                             <img src="../Picture/feed.png" class="icon_h">
                         </a>
                         
@@ -100,8 +100,6 @@ session_start();
         
         <div class="main">
             
-            
-            <div class="main_1">
                 <div id="picture" class="picture">
                     <?php 
                         echo "<img id=\"picture_1\" class = \"picture_1\" src = ".$row_1["link"].">"; 
@@ -122,8 +120,20 @@ session_start();
                             
                                 <div id="cap_2" class="cap_2">
                                     
-                                    <?php 
+                                    <?php
+                                    if(isset($_SESSION['username'])){
+                                        if($row_3['id_user'] != $_SESSION['username']){
+                                            $ur = $row_3['id_user'];
+                                            echo "<a class=\"user_1\" href=\"user_1.php?user=$ur\"><img class =\"ava ava_user\" id=\"ava_user\" src=".$row_3["link"]."></a>";
+                                        }
+                                        else{
+                                            echo "<a class=\"user_1\" href=\"user.php?\"><img class =\"ava ava_user\" id=\"ava_user\" src=".$row_3["link"]."></a>";
+                                        }
+                                    }
+                                    else{
                                         echo "<a class=\"user_1\" href=\"#\"><img class =\"ava ava_user\" id=\"ava_user\" src=".$row_3["link"]."></a>";
+                                    }
+                                        
                                     ?>
                                     
                                 </div>
@@ -240,6 +250,5 @@ session_start();
  
             });
         </script>
-        </div>
     </body>
 </html>
