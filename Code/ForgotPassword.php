@@ -22,17 +22,53 @@
                 else{
                     $p = $_POST['password'];
                 }
-                
-                if($u && $p){
+                if($_POST['email'] == null){
+                    echo "<script>alert(\"Please enter your email\");</script>";
+                }
+                else{
+                    $em = $_POST['email'];
+                }
+                if($u && $p && $em){
                     $conn = mysqli_connect("localhost", "root","", "picture_social");
-                    $sql = "select * from users where username = '".$u."' and password = '".$p."'";
+                    $sql = "select * from users where username = '".$u."' and email = '".$em."'";
                     
                     $result = mysqli_query($conn, $sql, null);
                     if(mysqli_num_rows($result) == 0){
-                        echo "<script>alert(\"Username or Password is not correct, please try again\");</script>";
+                        echo "<script>alert(\"Username or Email is not correct, please try again\");</script>";
                     }
                     else{
-                        $_SESSION['username'] = $u;
+                            $verificationCode = md5(uniqid("validation", true));
+                            $verificationLink = "http://localhost/Project2/Code/SignupControl.php?code=" . $verificationCode;
+                    
+                            $htmlStr = "";
+                            $htmlStr .= "Hi " . $em."\n";
+ 
+                            $htmlStr .= "Please click the link below to verify your subscription and have access to the download center.\n";
+                            $htmlStr .= "$verificationLink"."\n";
+ 
+                            $htmlStr .= "Kind regards,";
+                    
+                            $name = "UKnow";
+                            $email_sender = "nhom8cnw@gmail.com";
+                            $subject = "Verification Link | UKnow | Subscription";
+                            $recipient_email = $em;
+ 
+                            $headers  = "MIME-Version: 1.0rn";
+                            $headers .= "Content-type: text/html; charset=iso-8859-1rn";
+                            $headers .= "From: {$name} <{$email_sender}> n";
+ 
+                            $body = $htmlStr;
+                            $d = date('Y-m-d');
+                            if( mail($recipient_email, $subject, $body, $headers) ){
+                                $sql = "update users set password = '$p', verificode='$verificationCode', verify=0 where username = '$u'";
+                                mysqli_query($conn, $sql, null);
+                        
+                                echo "<script>alert(\"Please check your email to verified account!\");window.location.assign(\"login.php\");</script>";
+                            }
+                            else{
+                                die("Sending failed.");
+                                echo "<script>window.location.assign(\"signup.php\");</script>";
+                            }
                         echo "<script>window.location.href=\"Home.php\";</script>";
                         
                     }
@@ -89,7 +125,7 @@
                             <img src="../Picture/register.png" class="icon_h">
                         </a>
                     </li>
-                    
+
                 </ul>
             </div>
             
@@ -103,11 +139,12 @@
             <form method="post" action="login.php">
                 <p>Username</p>
                 <input type="text" name="username" placeholder=" Username">
-                <p>Password</p>
+                <p>New Password</p>
                 <input type="password" name="password" placeholder=" Password">
-                <input type="submit" name="login" value="Login">
-                <a href="ForgotPassword.php">Forgot password?</a><br>
-                <a href="signup.php">Signup?</a>
+                <p>Email</p>
+                <input type="password" name="email" placeholder=" Email">
+                <input type="submit" name="login" value="Submit">
+                <a href="login.php">Login</a>
             </form>
         </div>
       </div>

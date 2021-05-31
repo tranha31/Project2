@@ -1,4 +1,29 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+$conn = mysqli_connect("localhost", "root","", "picture_social");
+if(!isset($_SESSION['username'])){
+    ?>
+    <script>
+        alert("You must login first");
+        window.location.assign("login.php");
+    </script>
+    <?php
+}
+else{
+    $u = $_SESSION['username'];
+    if(isset($_POST['changeA'])){
+        $img = $_FILES['image']['name'];
+                
+        $link = "../Avatar/".$img;
+        if($img != ""){
+            $sql = "update avatar set link = '$link' where id_user = '$u'";
+            mysqli_query($conn, $sql, null);
+            move_uploaded_file($_FILES['image']['tmp_name'], "../Avatar/$img");
+        }
+    }
+}
+?>
+
 <!doctype html>
 <html>
     <head>
@@ -44,17 +69,35 @@
 
             <div class="header_2" id="header_2">
                 <ul style="list-style-type: none" id="r_link">
-                    <li id="notification_li">
-                        <span id="notification_count">3</span>
-                        <a class="bell" href="" id="notificationLink">
-                            <img src="../Picture/bell.png" class="icon_h" id="icon_h">
+                    <?php
+                    if(isset($_SESSION['username'])){
+                        $user = $_SESSION['username'];
+                        $sql = "select * from avatar where id_user = '$user'";
+                        $result = mysqli_query($conn, $sql, null);
+                        $row = mysqli_fetch_assoc($result);
+                        ?>
+                    <li>
+                        <a class="user" href="user.php">
+                            <img src="<?php echo $row['link']?>" class="icon_h">
                         </a>
+                    </li>
+                        <?php
+                    }
+                    ?>
+                    <li id="notification_li">
+                        <span id="notification_count">0</span>
+                        <div class="bell" id="notificationLink" onclick="Notification()">
+                            <img src="../Picture/bell.png" class="icon_h" id="icon_h">
+                        </div>
                         <div id="notificationContainer">
                             <div id="notificationTitle">Notifications</div>
-                            <div id="notificationsBody" class="notifications"></div>
-                            <div id="notificationFooter"><a href="#">See All</a></div>
+                            <div id="notificationsBody" class="notifications">
+                                <div id="no_content">
+                                </div>
+                            </div>
+                            <div id="notificationFooter"><a href="#" onclick="Close()">Close</a></div>
                         </div>
-
+                        
                     </li>
                     <li>
                         <a class="login" href="login.php">
@@ -66,14 +109,6 @@
                             <img src="../Picture/register.png" class="icon_h">
                         </a>
                     </li>
-                    <li>
-                        <a href="user.php" id="user" style="color: white;" class="icon_h">aaa</a>
-                    </li>
-                    <li>
-                        <a class="user" href="user.php">
-                            <img src="../Picture/tk.png" class="icon_h">
-                        </a>
-                    </li>
                 </ul>
             </div>
 
@@ -83,6 +118,7 @@
             <?php 
                 $conn = mysqli_connect("localhost", "root","", "picture_social");
                 $u = $_SESSION['username'];
+            
                 $sql = "select * from users where username = '".$u."'";
                 $result = mysqli_query($conn, $sql, null);
                 $row = mysqli_fetch_assoc($result);
@@ -99,6 +135,7 @@
                 
                 if($row2['hobby'] != null){
                     $hobby = $row2['hobby'];
+                    
                 }
                 else{
                     $hobby = "";
@@ -106,19 +143,35 @@
             
                 if($row2['info_introduce'] != null){
                     $info = $row2['info_introduce'] ;
+                    $info = html_entity_decode($info);
                 }
                 else{
                     $info = "";
                 }
+            
                 
             ?>
           <div class="userbox">
               <div class="box_left">
-                  <div class="avatar-box">
-                    <img src="<?php echo $row1['link']; ?>" class="avatar">
+                  <div id="a1" class="avatar-box">
+                    <img src="<?php echo $row1['link']; ?>" class="avatar" id="avatar1">
                     <h1 class="avatar_name"><?php echo $row['name']; ?></h1>
                   </div>
-                  <button class="button_logout" onclick="Logout()">Log out</button>
+                  <div id="a2" class="avatar-box">
+                        <form enctype="multipart/form-data" method="post" action="user.php">
+                            <input type="file" name="image" id="file" onchange="return fileValidation()">
+                            <div class="a">
+                            <input type="submit" name="changeA" value="Save">
+                            <button onclick="Cancel()">Cancel</button>
+                            </div>
+                            
+                        </form>
+                  </div>
+                  <div class="b">
+                  <button id="logout" class="button_logout" onclick="Logout()">Log out</button>
+                  <button id="ava" class="button_logout" onclick="Avatar()">Avatar</button>
+                  </div>
+                  
               </div>
               <div class="vertical_line"></div>
               <div class="box_right">
@@ -136,7 +189,7 @@
                   <h4>Introduce</h4>
                   <?php
                   if($info != ""){
-                      echo "<p>$info</p>";
+                      echo "<pre id=\"introduce\">$info</pre>";
                   }
                   ?>
                   </div>
@@ -208,31 +261,73 @@
         
         <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-                $("#notificationLink").click(function(){
-                    $("#notificationContainer").fadeToggle(300);
-                    $("#notification_count").fadeOut("slow");
-                    return false;
-                });
-
-                //Document Click hiding the popup
-                $(document).click(function(){
-                    $("#notificationContainer").hide();
-                });
-
-                //Popup on click
-                $("#notificationContainer").click(function(){
-                    return false;
-                });
-
-            });
+            function Notification(){
+                document.getElementById("notificationContainer").style.display="flex";
+                document.getElementById("notificationContainer").style.flexDirection = "column";
+            }
+            function Close(){
+                document.getElementById("notificationContainer").style.display="none";
+            }
             
             function Logout(){
                 window.location.assign("Home.php?a=0");
             }
             function Change(){
-                
+                window.location.assign("ChangeInfomation.php");
             }
+            
+            function fileValidation(){
+                var fileInput = document.getElementById("file");
+                var filePath = fileInput.value;
+                var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                if(!allowedExtensions.exec(filePath)){
+                    alert("Vui lòng upload các file có định dạng: .jpeg/.jpg/.png/.gif only.");
+                    fileInput.value = "";
+                    return false;
+                }
+                else{
+                    if(fileInput.files && fileInput.files[0]){
+                        var reader = new FileReader();
+                        reader.onload = function(e){
+                            document.getElementById("avatar1").src = e.target.result;
+                        }; 
+                        reader.readAsDataURL(fileInput.files[0]);
+                    }
+                }
+            }
+            function Cancel(){
+                document.getElementById("avatar1").src = "<?php echo $row1['link'];?>";
+                document.getElementById("a2").style.display = "none";
+            }
+            function Avatar(){
+                document.getElementById("a2").style.display = "flex";
+            }
+            function getXMLHttpRequest()
+
+        {
+            var request, err;
+            try {
+                request = new XMLHttpRequest(); 
+            }
+            catch(err) {
+                try { // first attempt for Internet Explorer
+                    request = new ActiveXObject("MSXML2.XMLHttp.6.0");
+                }
+                catch (err) {
+
+                    try { // second attempt for Internet Explorer
+                        request = new ActiveXObject("MSXML2.XMLHttp.3.0");
+                    }
+                    catch (err) {
+                        request = false; // oops, can’t create one!
+                    }
+                }
+            }
+            return request;
+        }
+            
         </script>
+        
+<?php include("notification.php"); ?>
     </body>
 </html>

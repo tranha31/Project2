@@ -1,6 +1,12 @@
 <!doctype html>
 <?php 
-session_start();    
+session_start(); 
+$conn = mysqli_connect("localhost", "root","", "picture_social");
+if(isset($_GET['no'])){
+    $idno = $_GET['no'];
+    $sql = "update nofitication set status = 1 where id = $idno";
+    mysqli_query($conn, $sql, null);
+}
 ?>
 <html>
     <head>
@@ -18,12 +24,12 @@ session_start();
             if(isset($_GET["id"])){
                 $id_post = $_GET["id"];
             }
-            $conn = mysqli_connect("localhost", "root","", "picture_social");
+            
             $sql = "select * from post where id = ".$id_post;
             $result = mysqli_query($conn, $sql, null);
             $row = mysqli_fetch_assoc($result);
             
-            $sql = "select * from picture where id = ".$id_post;
+            $sql = "select * from picture where id_post = ".$id_post;
             $result = mysqli_query($conn, $sql, null);
             $row_1 = mysqli_fetch_assoc($result);
             
@@ -37,7 +43,38 @@ session_start();
             $result = mysqli_query($conn, $sql, null);
             $row_3 = mysqli_fetch_assoc($result);
         
-            
+            if(isset($_POST['edit'])){
+                $content = $_POST['content'];
+                $idc = $_POST['idcmt'];
+            }
+            else{
+                $content = "";
+            }
+            if(isset($_POST['delete'])){
+                $idcmt = $_POST['idcmt1'];
+                $sql = "delete from comment where id = $idcmt";
+                mysqli_query($conn, $sql, null);
+            }
+            if(isset($_POST['editP'])){
+                $caption = $_POST['content'];
+            }
+            else{
+                $caption = "";
+            }
+            if(isset($_POST['delete'])){
+                $idp = $_POST['idpost1'];
+                $sql = "delete from comment where id_post = $idpost";
+                mysqli_query($conn, $sql, null);
+                $sql = "delete from comment where id_post = $idpost";
+                mysqli_query($conn, $sql, null);
+                $sql = "delete from post where id = $idpost";
+                mysqli_query($conn, $sql, null);
+                ?>
+        <script>
+            window.location.assign("Feed.php");
+        </script>
+                <?php
+            }
         ?>
         
         
@@ -63,15 +100,33 @@ session_start();
             
             <div class="header_2" id="header_2">
                 <ul style="list-style-type: none" id="r_link">
-                    <li id="notification_li">
-                        <span id="notification_count">3</span>
-                        <a class="bell" href="" id="notificationLink">
-                            <img src="../Picture/bell.png" class="icon_h" id="icon_h">
+                    <?php
+                    if(isset($_SESSION['username'])){
+                        $user = $_SESSION['username'];
+                        $sql = "select * from avatar where id_user = '$user'";
+                        $result = mysqli_query($conn, $sql, null);
+                        $rows = mysqli_fetch_assoc($result);
+                        ?>
+                    <li>
+                        <a class="user" href="user.php">
+                            <img src="<?php echo $rows['link']?>" class="icon_h">
                         </a>
+                    </li>
+                        <?php
+                    }
+                    ?>
+                    <li id="notification_li">
+                        <span id="notification_count">0</span>
+                        <div class="bell" id="notificationLink" onclick="Notification()">
+                            <img src="../Picture/bell.png" class="icon_h" id="icon_h">
+                        </div>
                         <div id="notificationContainer">
                             <div id="notificationTitle">Notifications</div>
-                            <div id="notificationsBody" class="notifications"></div>
-                            <div id="notificationFooter"><a href="#">See All</a></div>
+                            <div id="notificationsBody" class="notifications">
+                                <div id="no_content">
+                                </div>
+                            </div>
+                            <div id="notificationFooter"><a href="#" onclick="Close()">Close</a></div>
                         </div>
                         
                     </li>
@@ -85,14 +140,7 @@ session_start();
                             <img src="../Picture/register.png" class="icon_h">
                         </a>
                     </li>
-                    <li>
-                        <a href="user.php" id="user" style="color: white;" class="icon_h">aaa</a>
-                    </li>
-                    <li>
-                        <a class="user" href="user.php">
-                            <img src="../Picture/tk.png" class="icon_h">
-                        </a>
-                    </li>
+                    
                 </ul>
             </div>
             
@@ -128,6 +176,22 @@ session_start();
                                         }
                                         else{
                                             echo "<a class=\"user_1\" href=\"user.php?\"><img class =\"ava ava_user\" id=\"ava_user\" src=".$row_3["link"]."></a>";
+                                            
+                                            if($content == ""){
+                                            ?>
+                                    
+                                    <form class="edit" method="post" action="Featured_photo.php?id=<?php echo $id_post;?>">
+                                                    <input name="idpost" type="hidden" value="<?php echo $id_post;?>">
+                                                    <input name="content" type="hidden" value="<?php echo $row["caption"];?>">
+                                                    <input type="submit" value="Edit" name="editP">
+                                                </form>
+                                                
+                                                <form class="edit" method="post" action="Featured_photo.php?id=<?php echo $id_post;?>">
+                                                    <input name="idpost1" type="hidden" value="<?php echo $id_post;?>">
+                                                    <input type="submit" value="Delete" name="deleteP">
+                                                </form>
+                                            <?php
+                                        }
                                         }
                                     }
                                     else{
@@ -142,7 +206,7 @@ session_start();
                             <li style="display: flex">
                                 <div id="cap_3" class="cap_3" style="display: flex;">
                                     
-                                    <a id="vote" class="vote" href="#"><img id="vote_1" class="vote_1" src="../Picture/vote.png"></a>
+                                    <a id="vote" class="vote" href="vote.php?id=<?php echo $id_post;?>&s=1"><img id="vote_1" class="vote_1" src="../Picture/vote.png"></a>
                                     
                                     <?php 
                                         echo "<p id=\"count_vote\" class = \"count_vote\">".$row["vote"]."</p>";
@@ -164,9 +228,50 @@ session_start();
                             $result = mysqli_query($conn, $sql, null);
                             $u1 = mysqli_fetch_assoc($result);
                             
-                            ?>
+                            if($caption != ""){
+                                ?>
+                        <div id="my_cmt" class="my_cmt">
+                                <a href="user.php" class="my_profile">
+                                    <?php echo "<img class = \"ava\" src =\"".$u1["link"]."\">"; ?>
+                                </a>
+                            
+                                <form method="post" action="ValidCmt.php?id=<?php echo $id_post; ?>&p=1" style="display:flex; width:100%;">
+                                    <input id="my_cmt_1" class="my_cmt_1" type="text" name="comment" value="<?php echo $caption; ?>">
+                            
+                                    <button id="my_submit" class="my_submit"   onclick="">Send</button>
+                                </form>
+                            
+                        </div>
+                        <div id="all_cmt" class="all_cmt">
+                        </div>
+                                <?php
+                                
+                            }
+                            else{
+                            
+                            
+                            if($content != ""){
+                                ?>
                             <div id="my_cmt" class="my_cmt">
-                                <a href="#" class="my_profile">
+                                <a href="user.php" class="my_profile">
+                                    <?php echo "<img class = \"ava\" src =\"".$u1["link"]."\">"; ?>
+                                </a>
+                            
+                                <form method="post" action="ValidCmt.php?id=<?php echo $id_post; ?>&s=1&idc=<?php echo $idc;?>" style="display:flex; width:100%;">
+                                    <input id="my_cmt_1" class="my_cmt_1" type="text" name="comment" value="<?php echo $content; ?>">
+                            
+                                    <button id="my_submit" class="my_submit"   onclick="">Send</button>
+                                </form>
+                            
+                            </div>
+                            <div id="all_cmt" class="all_cmt">
+                            </div>
+                                <?php
+                            }
+                            else{
+                                ?>
+                            <div id="my_cmt" class="my_cmt">
+                                <a href="user.php" class="my_profile">
                                     <?php echo "<img class = \"ava\" src =\"".$u1["link"]."\">"; ?>
                                 </a>
                             
@@ -177,35 +282,56 @@ session_start();
                                 </form>
                             
                             </div>
-                            <?php
-                        }
-                        ?>
-                        
-                        
-                        <div id="all_cmt" class="all_cmt">
+                            
+                            <div id="all_cmt" class="all_cmt">
                             <ul id="a_cmt" class="a_cmt" style="list-style-type: none">
                                 <?php 
                                     $sql = "select * from comment where id_post = ".$id_post." order by publish desc";
                                     $result = mysqli_query($conn, $sql, null);
                                     while($row_4 = mysqli_fetch_assoc($result)){
+                                        
                                         $sql_1 = "select * from avatar where id_user = '".$row_4["id_user"]."'";
                                         $result_1 = mysqli_query($conn, $sql_1, null);
                                         $row_5 = mysqli_fetch_assoc($result_1);
                                         
                                         echo "<li class=\"all_cmts\">";
-                                        echo "<a class=\"proflie_user_1\" href=\"#\"><img class=\"ava\" src=".$row_5["link"]."></a>";
+                                        echo "<a class=\"proflie_user_1\" href=\"user_1.php?user=".$row_4['id_user']."\"><img class=\"ava\" src=".$row_5["link"]."></a>";
                                         echo "<div class=\"cmt_user\">";
                                         echo "<p>".$row_4["content"]."</p>";
                                         echo "</div>";
+                                        if(isset($_SESSION['username'])){
+                                            if($row_4['id_user'] == $_SESSION['username']){
+                                                
+                                                ?>
+                                <div class="edit_delete">
+                                                <form class="edit" method="post" action="Featured_photo.php?id=<?php echo $id_post;?>">
+                                                    <input name="idcmt" type="hidden" value="<?php echo $row_4['id'];?>">
+                                                    <input name="content" type="hidden" value="<?php echo $row_4["content"];?>">
+                                                    <input type="submit" value="Edit" name="edit">
+                                                </form>
+                                                
+                                                <form class="edit" method="post" action="Featured_photo.php?id=<?php echo $id_post;?>">
+                                                    <input name="idcmt1" type="hidden" value="<?php echo $row_4['id'];?>">
+                                                    <input type="submit" value="Delete" name="delete">
+                                                </form>
+                                </div>
+                                                <?php
+                                            }
+                                        }
                                         echo "</li>";
                                     }
                                     
                                 ?>
-                                
-                                
+                               
                             </ul>
                         </div>
+                            <?php
+                        }
+                        }
+                        }
+                        ?>
                         
+          
                     </div>
                     
                     
@@ -231,24 +357,37 @@ session_start();
         </script>
         <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-                $("#notificationLink").click(function(){
-                    $("#notificationContainer").fadeToggle(300);
-                    $("#notification_count").fadeOut("slow");
-                    return false;
-                });
- 
-                //Document Click hiding the popup 
-                $(document).click(function(){
-                    $("#notificationContainer").hide();
-                });
- 
-                //Popup on click
-                $("#notificationContainer").click(function(){
-                    return false;
-                });
- 
-            });
+            function Notification(){
+                document.getElementById("notificationContainer").style.display="flex";
+                document.getElementById("notificationContainer").style.flexDirection = "column";
+            }
+            function Close(){
+                document.getElementById("notificationContainer").style.display="none";
+            }
+            function getXMLHttpRequest()
+
+        {
+            var request, err;
+            try {
+                request = new XMLHttpRequest(); 
+            }
+            catch(err) {
+                try { // first attempt for Internet Explorer
+                    request = new ActiveXObject("MSXML2.XMLHttp.6.0");
+                }
+                catch (err) {
+
+                    try { // second attempt for Internet Explorer
+                        request = new ActiveXObject("MSXML2.XMLHttp.3.0");
+                    }
+                    catch (err) {
+                        request = false; // oops, can’t create one!
+                    }
+                }
+            }
+            return request;
+        }
         </script>
+<?php include("notification.php"); ?>
     </body>
 </html>

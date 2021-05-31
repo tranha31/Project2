@@ -1,4 +1,20 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+$conn = mysqli_connect("localhost", "root","", "picture_social");
+if(!isset($_SESSION['username'])){
+    ?>
+    <script>
+        alert("You must login first");
+        window.location.assign("login.php");
+    </script>
+    <?php
+}
+if(isset($_GET['no'])){
+    $idno = $_GET['no'];
+    $sql = "update nofitication set status = 1 where id = $idno";
+    mysqli_query($conn, $sql, null);
+}
+?>
 <!doctype html>
 <html>
     <head>
@@ -34,17 +50,35 @@
 
             <div class="header_2" id="header_2">
                 <ul style="list-style-type: none" id="r_link">
-                    <li id="notification_li">
-                        <span id="notification_count">3</span>
-                        <a class="bell" href="" id="notificationLink">
-                            <img src="../Picture/bell.png" class="icon_h" id="icon_h">
+                    <?php
+                    if(isset($_SESSION['username'])){
+                        $user = $_SESSION['username'];
+                        $sql = "select * from avatar where id_user = '$user'";
+                        $result = mysqli_query($conn, $sql, null);
+                        $row = mysqli_fetch_assoc($result);
+                        ?>
+                    <li>
+                        <a class="user" href="user.php">
+                            <img src="<?php echo $row['link']?>" class="icon_h">
                         </a>
+                    </li>
+                        <?php
+                    }
+                    ?>
+                    <li id="notification_li">
+                        <span id="notification_count">0</span>
+                        <div class="bell" id="notificationLink" onclick="Notification()">
+                            <img src="../Picture/bell.png" class="icon_h" id="icon_h">
+                        </div>
                         <div id="notificationContainer">
                             <div id="notificationTitle">Notifications</div>
-                            <div id="notificationsBody" class="notifications"></div>
-                            <div id="notificationFooter"><a href="#">See All</a></div>
+                            <div id="notificationsBody" class="notifications">
+                                <div id="no_content">
+                                </div>
+                            </div>
+                            <div id="notificationFooter"><a href="#" onclick="Close()">Close</a></div>
                         </div>
-
+                        
                     </li>
                     <li>
                         <a class="login" href="login.php">
@@ -54,14 +88,6 @@
                     <li>
                         <a class="register" href="signup.php">
                             <img src="../Picture/register.png" class="icon_h">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="user.php" id="user" style="color: white;" class="icon_h">aaa</a>
-                    </li>
-                    <li>
-                        <a class="user" href="user.php">
-                            <img src="../Picture/tk.png" class="icon_h">
                         </a>
                     </li>
                 </ul>
@@ -78,7 +104,13 @@
             }
             
             $conn = mysqli_connect("localhost", "root","", "picture_social");
-            $u = $_SESSION['username'];
+            if(isset($_SESSION['username'])){
+                $u = $_SESSION['username'];
+            }
+            else{
+                $u = "";
+            }
+            
         
             $sql = "select * from avatar where id_user ='".$ur."'";
             $result = mysqli_query($conn, $sql, null);
@@ -101,6 +133,7 @@
             
             if($row3['info_introduce'] != null){
                 $info = $row3['info_introduce'] ;
+                $info = html_entity_decode($info);
             }
             else{
                 $info = "";
@@ -132,7 +165,7 @@
                   <h4>Introduce</h4>
                   <?php
                   if($info != ""){
-                      echo "<p>$info</p>";
+                       echo "<pre id=\"introduce\">$info</pre>";
                   }
                   ?>
                   </div>
@@ -204,24 +237,38 @@
 
         <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-                $("#notificationLink").click(function(){
-                    $("#notificationContainer").fadeToggle(300);
-                    $("#notification_count").fadeOut("slow");
-                    return false;
-                });
+            function Notification(){
+                document.getElementById("notificationContainer").style.display="flex";
+                document.getElementById("notificationContainer").style.flexDirection = "column";
+            }
+            function Close(){
+                document.getElementById("notificationContainer").style.display="none";
+            }
+            function getXMLHttpRequest()
 
-                //Document Click hiding the popup
-                $(document).click(function(){
-                    $("#notificationContainer").hide();
-                });
+        {
+            var request, err;
+            try {
+                request = new XMLHttpRequest(); 
+            }
+            catch(err) {
+                try { // first attempt for Internet Explorer
+                    request = new ActiveXObject("MSXML2.XMLHttp.6.0");
+                }
+                catch (err) {
 
-                //Popup on click
-                $("#notificationContainer").click(function(){
-                    return false;
-                });
-
-            });
+                    try { // second attempt for Internet Explorer
+                        request = new ActiveXObject("MSXML2.XMLHttp.3.0");
+                    }
+                    catch (err) {
+                        request = false; // oops, can’t create one!
+                    }
+                }
+            }
+            return request;
+        }
         </script>
+        
+<?php include("notification.php"); ?>
     </body>
 </html>

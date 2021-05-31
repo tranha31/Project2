@@ -27,6 +27,12 @@
                 else{
                     $n = $_POST['name'];
                 }
+                if(isset($_POST['email'])){
+                    $em = $_POST['email'];
+                }
+                else{
+                    echo "<script>alert(\"Please enter your email\");</script>";
+                }
                 if($_POST['date_of_birth'] == null){
                     echo "<script>alert(\"Please choose your date of birth\");</script>";
                 }
@@ -62,7 +68,10 @@
                 $st = "".$xp."@".$nn."@".$ds;
                 
                 $gt = $_POST['gioithieu'];
-                
+                if($gt != ""){
+                    $gt = addslashes($gt);
+                    $gt = htmlspecialchars(htmlentities($gt));
+                }
                 if($u && $p){
                     $conn = mysqli_connect("localhost", "root","", "picture_social");
                     $sql = "select * from users where username = '".$u."'";
@@ -71,16 +80,51 @@
                         echo "<script>alert(\"Username is used, please try again\");</script>"; 
                     }
                     else{
-                        $sql = "insert into users values ('".$u."','".$p."','".$n."',"."0, 0)";
-                        //echo $sql;
+                        $sql = "select * from users where email = '$em'";
                         $result = mysqli_query($conn, $sql, null);
-                        
-                        $sql = "insert into info(id_user, date_of_birth, sex, hobby, info_introduce) values('".$u."','".$dob."','".$sex."','".$st."','".$gt."')";
-                        //echo $sql;
-                        $result = mysqli_query($conn, $sql, null);
-                        
-                        echo "<script>window.location.href=\"login.php\";</script>";
-                        
+                        if(mysqli_num_rows($result) > 0){
+                            echo "<script>alert(\"Email was register!\");</script>";
+                        }
+                        else{
+                            $verificationCode = md5(uniqid("validation", true));
+                            $verificationLink = "http://localhost/Project2/Code/SignupControl.php?code=" . $verificationCode;
+                    
+                            $htmlStr = "";
+                            $htmlStr .= "Hi " . $em."\n";
+ 
+                            $htmlStr .= "Please click the link below to verify your subscription and have access to the download center.\n";
+                            $htmlStr .= "$verificationLink"."\n";
+ 
+                            $htmlStr .= "Kind regards,";
+                    
+                            $name = "UKnow";
+                            $email_sender = "nhom8cnw@gmail.com";
+                            $subject = "Verification Link | UKnow | Subscription";
+                            $recipient_email = $em;
+ 
+                            $headers  = "MIME-Version: 1.0rn";
+                            $headers .= "Content-type: text/html; charset=iso-8859-1rn";
+                            $headers .= "From: {$name} <{$email_sender}> n";
+ 
+                            $body = $htmlStr;
+                            $d = date('Y-m-d');
+                            if( mail($recipient_email, $subject, $body, $headers) ){
+                                $sql = "insert into users values ('".$u."','".$p."','".$n."',"."0, 0, '$em', '$verificationCode', 0)";
+                                mysqli_query($conn, $sql, null);
+                                
+                                $sql = "insert into info(id_user, date_of_birth, sex, hobby, info_introduce) values('".$u."','".$dob."','".$sex."','".$st."','".$gt."')";
+                                $result = mysqli_query($conn, $sql, null);
+                                
+                                $sql = "insert into avatar(id_user, link) values ('$u', '../Avatar/account.jpg')";
+                                mysqli_query($conn, $sql, null);
+                                
+                                echo "<script>alert(\"Please check your email to verified account!\");window.location.assign(\"login.php\");</script>";
+                            }
+                            else{
+                                die("Sending failed.");
+                                echo "<script>window.location.assign(\"signup.php\");</script>";
+                            }
+                        }
                     }
                 }
                 
@@ -137,14 +181,7 @@
                             <img src="../Picture/register.png" class="icon_h">
                         </a>
                     </li>
-                    <li>
-                        <a href="#" id="user" style="color: white;" class="icon_h">aaa</a>
-                    </li>
-                    <li>
-                        <a class="user" href="">
-                            <img src="../Picture/tk.png" class="icon_h">
-                        </a>
-                    </li>
+                    
                 </ul>
             </div>
             
@@ -167,6 +204,10 @@
                        <div class="input-box">
 
                            <input type="text" name="name" placeholder="Account name">
+                       </div>
+                       <div class="input-box">
+
+                           <input type="text" name="email" placeholder="Email">
                        </div>
                        <div class="input-box">
                            <div class="col-6">
@@ -214,4 +255,18 @@
             <a href="#" id="aboutus" style="color: gray">About us</a>
         </div>
     </body>
+<script>
+        var textareas = document.getElementsByTagName('textarea');
+        var count = textareas.length;
+        for(var i=0;i<count;i++){
+            textareas[i].onkeydown = function(e){
+                if(e.keyCode==9 || e.which==9){
+                    e.preventDefault();
+                    var s = this.selectionStart;
+                    this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+                    this.selectionEnd = s+1; 
+                }
+            }
+        }
+</script>   
 </html>

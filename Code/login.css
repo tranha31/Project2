@@ -9,7 +9,7 @@
 
 .loginbox{
     width: 640px;
-    height: 420px;
+    height: auto;
     background: #fff;
     color: #fff;
     //transform: translate(-50%,-50%);

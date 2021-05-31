@@ -45,14 +45,10 @@ body{
 }
 .user{
     position: absolute;
-    right: 10px;
-    display: none;
+    right: 135px;
+    
 }
-#user{
-    position: absolute;
-    right: 60px;
-    display: none;
-}
+
 
 .home img{
     width: 55px;
@@ -74,9 +70,9 @@ body{
     margin-left: 10px;
 }
 .user img{
-    width: 35px;
+    width: 40px;
     position: relative;
-    top: -2px; 
+    top: -6px; 
 }
 
 .footer{
@@ -97,10 +93,11 @@ body{
     top: 60px;
     margin-left: -170px;
     width: 400px;
-    z-index: 5000;
+    z-index: 10;
     display: none; 
 }
 // Popup Arrow
+/*
 #notificationContainer:before {
     content: '';
     display: block;
@@ -113,22 +110,44 @@ body{
     margin-top: -20px;
     margin-left: 188px;
 }
+*/
 #notificationTitle
 {
     font-weight: bold;
     padding: 8px;
     font-size: 13px;
-    background-color: #ffffff;
+    background-color:aqua;
     position: fixed;
-    z-index: 1000;
+    z-index: 20;
     width: 384px;
     border-bottom: 1px solid #dddddd;
 }
 #notificationsBody
 {
-    padding: 33px 0px 0px 0px !important;
     min-height:300px;
-    z-index: 1500
+    z-index: 20;
+    overflow: auto;
+    border-top: 1px solid 
+    
+}
+#no_content{
+    width: 100%;
+    
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2000;
+    position: relative;
+}
+#no_content a{
+    font-size: 20px;
+    margin-left: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 3000;
+    position: relative;
+    display: block;
 }
 #notificationFooter
 {

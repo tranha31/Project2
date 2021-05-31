@@ -46,10 +46,9 @@
 #profile_2{
     width: 80px;
 }
-textarea{
+#cap{
     height: 55px;
     width: 80%;
-    overflow: auto;
 }
 #submit{
     display: none;
@@ -97,7 +96,7 @@ textarea{
     #profile_2{
         width: 40px;
     }
-    textarea{
+    #cap{
         height: 40px;
         width: 75%;
     }

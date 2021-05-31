@@ -151,6 +151,18 @@ form{
 p{
     word-wrap: break-word;
 }
+.edit_delete{
+    margin-left: 5px;
+}
+.edit input{
+    width: 60px;
+    height: 30px;
+    font-size: 10px;
+    margin-left: 5px;
+}
+.edit input:hover{
+    cursor: pointer;
+}
 
 @media (max-width: 480px){
     .main{
