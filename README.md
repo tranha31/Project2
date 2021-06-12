@@ -7,7 +7,7 @@
 
 # 🛠️ Cách cài đặt: 
 
-2️⃣ Mở project:
+2️⃣ Cài đặt:
 <br>- Clone thư mục trong thư mục htdocs của xampp
 
 3️⃣ Mở Server xampp:
@@ -31,7 +31,7 @@
 <br>Lưu lại✔️
 
 <br> 👉xampp/php/php.ini
-<br>tìm và sửa lại như sau, nếu cái nào đang bị comment thì mở comment ra và sửa:
+<br>Tìm và sửa lại như sau, nếu cái nào đang bị comment thì mở comment ra và sửa:
 
 <br>[mail function]
 <br>SMTP=smtp.gmail.com

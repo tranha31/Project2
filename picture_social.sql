@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 31, 2021 lúc 11:37 AM
+-- Thời gian đã tạo: Th6 12, 2021 lúc 01:41 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -136,7 +136,8 @@ CREATE TABLE `nofitication` (
 --
 
 INSERT INTO `nofitication` (`id`, `id_user`, `status`, `content`, `link`, `id_user_no`, `date`) VALUES
-(2, 'hatq', 0, 'likes your post', 'Featured_photo.php?id=14', 'a', '2021-05-29');
+(2, 'hatq', 0, 'likes your post', 'Featured_photo.php?id=14', 'a', '2021-05-29'),
+(3, 'a', 0, 'likes your post', 'Featured_photo.php?id=14', 'a', '2021-06-01');
 
 -- --------------------------------------------------------
 
@@ -187,7 +188,7 @@ INSERT INTO `post` (`id`, `id_user`, `caption`, `vote`, `publish_time`) VALUES
 (3, 'a', 'Goodnight', 3, '2021-04-15 23:10:20'),
 (4, 'a', 'Have a good day', 2, '2021-04-20 06:15:30'),
 (5, 'a', 'So beautiful', 1, '2021-03-30 15:40:10'),
-(14, 'a', 'a', 1, '2021-05-05 20:29:54');
+(14, 'a', 'a', 2, '2021-05-05 20:29:54');
 
 -- --------------------------------------------------------
 
@@ -233,7 +234,8 @@ CREATE TABLE `vote` (
 --
 
 INSERT INTO `vote` (`id`, `id_post`, `id_user`) VALUES
-(4, 14, 'hatq');
+(4, 14, 'hatq'),
+(5, 14, 'a');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -334,7 +336,7 @@ ALTER TABLE `info`
 -- AUTO_INCREMENT cho bảng `nofitication`
 --
 ALTER TABLE `nofitication`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `picture`
@@ -352,7 +354,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT cho bảng `vote`
 --
 ALTER TABLE `vote`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
