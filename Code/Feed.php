@@ -1,6 +1,7 @@
 <?php 
 session_start(); 
 $conn = mysqli_connect("localhost", "root","", "picture_social");
+
 ?>
 <!doctype html>
 <html>
@@ -122,6 +123,7 @@ $conn = mysqli_connect("localhost", "root","", "picture_social");
                 
                     <a id="remove" onclick="Remove_p()" href="#">Remove</a>
                     <input id="submit" type="submit" name="submit" value="Post">
+                    
                 </div>
             </form>
             

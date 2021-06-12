@@ -1,5 +1,6 @@
+
 <?php session_start(); ?>
-<!doctype html>
+
 <html>
     <head>
         <title></title>
@@ -93,23 +94,27 @@
                 <div class="image_1" id="image_1">
                     <input type="file" name="input_p" id="file" onchange="return fileValidation()">
                 </div>
-                <div class="image_2">
+                <div id="image_2" class="image_2">
                     
                 </div>
             </div>
             
             <div class="button">
                 <div class="select_b">
-                    <button class="button_1" id="start" onclick="">Start</button>
+                    <button class="button_1" id="start" onclick="Start()">Start</button>
+                    <button class="button_1" onclick="Remove()">Cancel</button>
+<!--
                     <select style="text-align: center">
                         <option value="Medium" class="button_1">Medium</option>
                         <option value="High" class="button_2">High</option>
                     </select>
+-->
                     
                 </div>
                 <div class="download_b">
-                    <button class="button_1" id="download" onclick="">Download</button>
-                    <button class="button_1" id="share">Share</button>
+                    <button class="button_1" id="download">Download</button>
+                    
+                    
                 </div>
             </div>
             
@@ -153,7 +158,11 @@
             function fileValidation(){
                 var fileInput = document.getElementById("file");
                 var filePath = fileInput.value;
+                //console.log(filePath);
                 var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                var image1 = /\.jpg$/i;
+                var image2 = /\.jpeg$/i;
+                var image3 = /\.png$/i;
                 if(!allowedExtensions.exec(filePath)){
                     alert("Vui lòng upload các file có định dạng: .jpeg/.jpg/.png/.gif only.");
                     fileInput.value = "";
@@ -163,12 +172,29 @@
                     if(fileInput.files && fileInput.files[0]){
                         var reader = new FileReader();
                         reader.onload = function(e){
-                            document.getElementById("image_1").innerHTML = '<img  src="'+e.target.result+'"/>';
+                            document.getElementById("image_1").innerHTML = '<img id="picture" src="'+e.target.result+'"/>';
+                            
                         }; 
+                        //reader.readAsBinaryString(fileInput.files[0]);
                         reader.readAsDataURL(fileInput.files[0]);
+                        
+                        if(image1.exec(filePath)){
+                            console.log("jpg");
+                            <?php $no = 23; ?>
+                        }
+                        else if(image2.exec(filePath)){
+                            console.log("jpeg");
+                            <?php $no = 23; ?>
+                        }
+                        else if(image3.exec(filePath)){
+                            console.log("png");
+                            <?php $no = 22; ?>
+                        }
                     }
                 }
-            } 
+            }
+            
+            
             
         </script>
         <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
@@ -205,5 +231,123 @@
         }
         </script>
 <?php include("notification.php"); ?>
+        
+<script>
+    async function Start(){
+        if(document.getElementById("picture")){
+            alert("Please wait from 1 to 5 minutes!!");
+            let imgs = document.getElementById("picture").src;
+            //console.log("aaaa");
+            //console.log(imgs);
+            //console.log(document.getElementById("picture"));
+            //console.log(base64ToArrayBuffer(imgs.slice(23)));
+            let proxyUrl = "https://cors-anywhere.herokuapp.com/";
+            let url = "http://localhost:5000/api/test";
+            let req = new Request(url,{
+                method : "POST",
+//                body: JSON.stringify({
+//                    //data: base64ToArrayBuffer(imgs.slice(23))
+//                    data: imgs.slice(23)
+//                }),
+                body: imgs.slice(<?php echo $no;?>),
+                headers:{
+//                   "Access-Control-Allow-Origin": "http://localhost:5000/api/test",
+//                    "Access-Control-Allow-Credentials" : "true",
+                    "Content-type":"image/jpeg"
+                    
+                }
+            });
+            fetch(req)
+                .then(function(response){
+                    if(response.status != 200){
+                        console.log("errorrr");
+                        console.log(response.status);
+                        return;
+                    }
+                response.json().then(function(data){
+                    //console.log(data['image']);
+                    var srcc = "data:image/png;base64,"
+                    srcc = srcc+data['image'];
+                    
+                    document.getElementById("image_2").innerHTML = '<img id="picture2" src="'+srcc+'"/>';
+                    document.getElementById("download").style.display = "flex";
+           
+                    
+                });
+            })
+            
+                
+            /*fetch("http://192.168.1.10:5000/api/test", {
+                method : "POST",
+                //body : base64ToArrayBuffer(imgs.slice(23))
+                /*body: JSON.stringify({
+                    data: base64ToArrayBuffer(imgs.slice(23))
+                }),*/
+               /* headers:{
+                    "Content-type":"image/jpeg"
+                }
+            })   
+                .then(function(response){
+                if(response.ok){
+                    console.log("called api sucess");
+                }else{
+                    console.log("errorrrrrr");
+                }
+            })*/
+            
+//            document.getElementById("image_2").innerHTML = '<img id="picture2" src="'+imgs+'"/>';
+//            document.getElementById("download").style.display = "flex";
+           
+        }
+    }
+    
+    function base64ToArrayBuffer(base64) {
+        var binary_string = window.atob(base64);
+        var len = binary_string.length;
+        var bytes = new Uint8Array(len);
+        var BS = "";
+        var f = "00000000";
+        for (var i = 0; i < len; i++) {
+            bytes[i] = binary_string.charCodeAt(i);
+            var x = f + bytes[i].toString(2);
+            //BS = BS + bytes[i].toString(2);
+            BS = BS + x.slice(-8);
+        }
+        //console.log(BS);
+        //return bytes;
+        //return BS;
+        return binary_string;
+        
+    }
+    
+    function Remove(){
+        if(document.getElementById("picture")){
+            let div2 = document.getElementById("image_2");
+            let img = document.getElementById("picture2");
+            div2.removeChild(img);
+            div2.innerHTML = "";
+            document.getElementById("download").style.display = "none";
+            
+            document.getElementById("image_1").removeChild(document.getElementById("picture"));
+            document.getElementById("image_1").innerHTML = "<input type=\"file\" name=\"input_p\" id=\"file\" onchange=\"return fileValidation()\">";
+        }
+        
+    }
+</script>
+<script src="js/FileSaver.min.js"></script>
+<script>
+    let btnDownload = document.getElementById("download");
+    
+    btnDownload.addEventListener('click', () =>{
+        let img = document.getElementById("picture2");
+        let imgPath = img.getAttribute('src');
+        let fileName = getFileName(imgPath);
+        saveAs(imgPath, fileName);
+    });
+    
+    function getFileName(str){
+        return str.substring(str.lastIndexOf('/')+1);
+    }
+</script>
     </body>
 </html>

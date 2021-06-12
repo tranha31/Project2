@@ -1,18 +1,14 @@
-# 💻 Phần mềm hỗ trợ trao đổi học tập trực tuyến
+# 💻 Phần mềm tăng độ phân giải ảnh
 
 ⚠️ Một số phần mềm, tool cần thiết để sử dụng trong project: <br>
-<br>- IDE:+<a href="https://www.eclipse.org/pd/"> Eclipse-PHP-2020-06-R </a>
 <br>- Server:+<a href="https://www.apachefriends.org/index.html"> XAMPP Apache</a>
 <br>- DBS:+<a href="https://www.apachefriends.org/index.html"> XAMPP MySQL</a>
-<br>- VCS:+<a href="https://gitlab.com/"> GitLab </a> +<a href ="https://git-scm.com/downloads"> Git </a> <br>
 
 
 # 🛠️ Cách cài đặt: 
-(Link git: https://github.com/tranha31/Project2.git)
-
 
 2️⃣ Mở project:
-(Clone thư mục trong thư mục htdocs của xampp)
+<br>- Clone thư mục trong thư mục htdocs của xampp
 
 3️⃣ Mở Server xampp:
 <br>- Khởi động xampp, bật Apache và MySQL (nếu có xung đột cổng thì phải config <a href ="https://techbrij.com/setting-up-xampp-apache-iis-windows">  Error: Can't start Apache</a>).
@@ -57,7 +53,12 @@
 
 7️⃣ Run Web Application
 
-(Chạy trực tiếp trên website: http://localhost/Project2/Code/Home.php)
+<br>- Chạy Apache và MySQL của Xampp
+<br>- Chạy trực tiếp trên trình duyệt: http://localhost/Project2/Code/Home.php
+<br>- Để sử dụng chức năng tăng độ phân giải ảnh xem trong link sau: https://github.com/Cris-Nguyen/SRResNet-SISR
+<br>- Cài đặt theo hướng dẫn, chạy file api.py
+<br>- Tốc độ xử lý ảnh phụ thuộc vào cấu hình máy, nên hãy cân nhắc trước khi xử lý 1 ảnh kích thước lớn. Lời khuyên: Hãy dùng google colab để test.
+
 
 
 

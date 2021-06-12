@@ -135,7 +135,7 @@
         <div class="loginbox">
           
           <img src="..\Picture\avatar.png" class="avatar">
-            <h1>Login</h1>
+            <h1>Change Password</h1>
             <form method="post" action="login.php">
                 <p>Username</p>
                 <input type="text" name="username" placeholder=" Username">
